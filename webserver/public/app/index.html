@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr"  ng-app="libraryApp">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+	<title>Dover Library</title>
+    <!-- Custom styles for this template -->
+	<link rel="stylesheet" href="/stylesheets/style.css"/>
+	<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/bower_components/angular-loading-bar/build/loading-bar.min.css"/>
+</head>
+<body>
+	<ncis-navbar-top></ncis-navbar-top>
+	
+	<div class="col-lg-3 pull-right">
+		<h3>Connection</h3>
+	<div class="input-group input-group-sm">
+		<span class="input-group-addon" id="sizing-addon3">Login</span>
+		<input type="text" class="form-control" placeholder="Adress mail" aria-describedby="sizing-addon3">
+	</div>
+	<div class="input-group input-group-sm">
+	  <span class="input-group-addon" id="sizing-addon3">Password</span>
+	  <input type="password" class="form-control" placeholder="Password" aria-describedby="sizing-addon3">
+	</div>
+		Pas de compte ? <a href="#">inscription !</a>
+	</div>
+
+	<div ui-view="main" class="col-lg-9 starter-template"></div>
+
+    <div class="col-lg-3 pull-right"> 
+		<h2>Informations pratiques</h2>
+		<p><img class="imgleft" src="" alt=""/><b>On vous accueille:</b>
+		<br/> du lundi au vendredi de 9h30 à 12h30 et de 13h30 à 19h,
+		<br/> le samedi de 9h00 à 19h.
+		<br/><br/>
+
+		<b>Adresse:</b><br/>62, Rue de la culture <br/>00000 Dover<br/><br/>
+		<b>Numéro de téléphone:</b><br/> 00 00 00 00 00</p>
+    </div>
+
+	<!-- libraries -->
+	<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="/bower_components/angular/angular.min.js"></script>
+	<!--<script src="/bower_components/angular-route/angular-route.min.js"></script>-->
+	<script src="/bower_components/angular-mocks/angular-mocks.js"></script>
+	<script src="/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+	<script src="/bower_components/angular-touch/angular-touch.min.js"></script>
+	<script src="/bower_components/angular-animate/angular-animate.min.js"></script>
+	<script src="/bower_components/angular-resource/angular-resource.min.js"></script>
+	<script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script src="/bower_components/ui-router-extras/release/ct-ui-router-extras.min.js"></script>
+	<script src="/bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
+	<script src="/bower_components/bignumber.js/bignumber.min.js"></script>
+	<script src="/bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+	<script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+	<script src="/bower_components/angular-cookie/angular-cookie.min.js"></script>
+	<script src="/bower_components/moment/min/moment-with-locales.min.js"></script>
+	<script src="/bower_components/angular-moment/angular-moment.min.js"></script>
+	<script src="/bower_components/angular-utils-pagination/dirPagination.js"></script>
+	
+	<!--<script src="/application.js"></script>-->
+	<!-- tmp libraries-->
+	<script src="/app.js"></script>
+	<script src="/views.js"></script>
+	
+	<!-- tmp views -->
+	<script src="/home/HomeController.js"></script>
+	<script src="/book/BookController.js"></script>
+	<script src="/books/BooksController.js"></script>
+	<script src="/contacts/ContactsController.js"></script>
+	
+	<script src="/developpeur/DeveloppeurController.js"></script>
+	
+	<!-- tmp directives -->
+	<script src="/directives/NcisNavbarTop.js"></script>
+</body>
+</html>

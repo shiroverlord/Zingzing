@@ -1,0 +1,17 @@
+{
+  "name": "light-application-library",
+  "description": "An application project for a library",
+  "version": "0.0.1",
+  "license": "NCIS",
+  "private": true,
+  "dependencies": {
+    "angular": "1.2.x",
+    "angular-route": "1.2.x",
+    "angular-loader": "1.2.x",
+    "angular-mocks": "~1.2.x",
+    "html5-boilerplate": "~4.3.0"
+  },
+  "resolutions": {
+    "angular": "1.2.28"
+  }
+}

@@ -1,0 +1,42 @@
+package test;
+
+import java.util.List;
+
+import model.Connexion;
+import model.Genre;
+import model.TypeUtilisateur;
+import model.Utilisateur;
+import rmi.ClientSingleton;
+
+public class Main {
+	public static void main(String[] args) {
+		System.out.println(System.getProperty("user.dir"));
+		System.setProperty("java.security.policy", "client.policy");
+		ClientSingleton clientS = ClientSingleton.getInstance();
+		if(clientS != null) {
+			List<Connexion> list=null;
+			do {
+				list = clientS.getAllConnexions();
+			}while(list == null);	//|| userResult == null
+			System.out.println("Test = " + list);
+			
+			List<TypeUtilisateur> listTU=null;
+			do {
+				listTU = clientS.getAllTypeUtilisateurs();
+			}while(listTU == null);	//|| userResult == null
+			System.out.println("Test = " + listTU);
+			
+			List<Genre> listG=null;
+			do {
+				listG = clientS.getAllGenres();
+			}while(listG == null);	//|| userResult == null
+			System.out.println("Test = " + listG);
+			
+			List<Utilisateur> listUser=null;
+			//do {
+				listUser = clientS.getAllUser();
+			//}while(listUser == null);	//|| userResult == null
+			System.out.println("Test = " + listUser);
+		}
+	}
+}
