@@ -107,7 +107,7 @@ public class ClientSingleton {
 			}
 		}
 		catch (Exception e) {
-			System.out.println("Serveur Data non atteignable - iRMISingleton.getAllUser(): "+e);
+			System.out.println("Serveur Data non atteignable - iRMISingleton.getAllUsers(): "+e);
 			isConnected = false;
 		}
 		return result;
