@@ -1,0 +1,35 @@
+package rmi;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.util.List;
+
+import model.Code;
+import model.Droit;
+import model.Section;
+import model.Utilisateur;
+
+public interface RmiInterface extends Remote {
+	public static final int RMI_PORT = 1099;
+	public static final String RMI_HOST = "localhost";
+	public static final String RMI_NAME = "dataserverRMI";
+	public static final String RMI_URL = "rmi://"+RMI_HOST+":"+RMI_PORT+"/"+RMI_NAME;
+	
+	public String getTestString() throws RemoteException;
+	
+	public List<Utilisateur> getAllUsers() throws RemoteException;
+	public Utilisateur getUserById(Long id) throws RemoteException;
+	public boolean insertUser(Utilisateur user) throws RemoteException;
+	public boolean updateUser(Utilisateur user) throws RemoteException;
+	
+	public List<Droit> getAllDroits() throws RemoteException;
+	public Droit getDroitById(Long id) throws RemoteException;
+	
+	public List<Code> getAllCodes() throws RemoteException;
+	public Code getCodeById(Long id) throws RemoteException;
+	
+	public List<Section> getAllSections() throws RemoteException;
+	public Section getSectionById(Long id) throws RemoteException;
+	
+	
+}

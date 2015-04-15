@@ -7,7 +7,6 @@ GET		/							  		controllers.Assets.at(path="/public/app", file="index.html")
 
 # API
 GET		/api/test/string					controllers.Application.getStringTest()
-GET		/api/testRMI/string					controllers.Application.getStringTestFromRMI()
 GET		/api/users							controllers.Application.getAllUsers()
 #Exemple avec arguments
 GET		/api/book/:bookId					controllers.Application.getBookById(bookId : Integer)

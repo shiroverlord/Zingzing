@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,8 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import tools.Tools;
-
 @Entity
 @Table(name="utilisateur")
 public class Utilisateur implements Serializable {
@@ -24,39 +21,24 @@ public class Utilisateur implements Serializable {
 	private Long id;
 	private String nom = null;
 	private String prenom = null;
-	private Calendar datenaissance = null;
-	private String adresse = null;
-	private String adresseMail = null;
-	private String telephone = null;
-	private TypeUtilisateur typeUtilisateur = null;
-	private Connexion connexion = null;
-	private Genre genre = null;
+	private Droit droit = null;
+	private Section section = null;
 	
 	public Utilisateur(){}
 	
-	public Utilisateur(Long id, String nom, String prenom, Calendar datenaissance, String adresse, String adresseMail, String telephone, TypeUtilisateur typeUtilisateur, Connexion connexion, Genre genre) {
+	public Utilisateur(Long id, String nom, String prenom, Droit droit, Section section) {
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
-		this.datenaissance = datenaissance;
-		this.adresse = adresse;
-		this.adresseMail = adresseMail;
-		this.telephone = telephone;
-		this.typeUtilisateur = typeUtilisateur;
-		this.connexion = connexion;
-		this.genre = genre;
+		this.droit = droit;
+		this.section = section;
 	}
 	
-	public Utilisateur(String nom, String prenom, Calendar datenaissance, String adresse, String adresseMail, String telephone, TypeUtilisateur typeUtilisateur, Connexion connexion, Genre genre) {
+	public Utilisateur(String nom, String prenom, Droit droit, Section section) {
 		this.nom = nom;
 		this.prenom = prenom;
-		this.datenaissance = datenaissance;
-		this.adresse = adresse;
-		this.adresseMail = adresseMail;
-		this.telephone = telephone;
-		this.typeUtilisateur = typeUtilisateur;
-		this.connexion = connexion;
-		this.genre = genre;
+		this.droit = droit;
+		this.section = section;
 	}
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -87,75 +69,29 @@ public class Utilisateur implements Serializable {
 		this.prenom = prenom;
 	}
 
-	@Column(name="datenaissance")
-	public Calendar getDateNaissance() {
-		return datenaissance;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_Droit", nullable = false)
+	public Droit getDroit() {
+		return droit;
 	}
 
-	public void setDateNaissance(Calendar datenaissance) {
-		this.datenaissance = datenaissance;
+	public void setDroit(Droit droit) {
+		this.droit = droit;
 	}
 	
-	@Column(name="adresse")
-	public String getAdresse() {
-		return adresse;
-	}
-
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
-	}
-
-	@Column(name="adresseMail")
-	public String getAdresseMail() {
-		return adresseMail;
-	}
-
-	public void setAdresseMail(String adresseMail) {
-		this.adresseMail = adresseMail;
-	}
-
-	@Column(name="telephone")
-	public String getTelephone() {
-		return telephone;
-	}
-
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_type_d_utilisateur", nullable = false)
-	public TypeUtilisateur getTypeUtilisateur() {
-		return typeUtilisateur;
-	}
-
-	public void setTypeUtilisateur(TypeUtilisateur typeUtilisateur) {
-		this.typeUtilisateur = typeUtilisateur;
-	}
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_connexion", nullable = false)
-	public Connexion getConnexion() {
-		return connexion;
-	}
-
-	public void setConnexion(Connexion connexion) {
-		this.connexion = connexion;
-	}
-
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_genre", nullable = false)
-	public Genre getGenre() {
-		return genre;
+	@JoinColumn(name = "id_Section", nullable = false)
+	public Section getSection() {
+		return section;
 	}
 
-	public void setGenre(Genre genre) {
-		this.genre = genre;
+	public void setSection(Section section) {
+		this.section = section;
 	}
 	
 	@Transient
 	@Override
 	public String toString() {
-		return "User:{ id:"+id+", prenom: \'"+prenom+"\' , nom: \'"+nom+"\', dateanniversaire: \'"+Tools.formatDateToDisplay(datenaissance)+"\'"+"\', connexion: \'"+connexion.toString()+"}";
+		return "User:{ id:"+id+", prenom: \'"+prenom+"\' , nom: \'"+nom+"\', droit: \'"+droit.toString()+"}";
 	}
 }

@@ -1,2 +1,32 @@
 1429030337418	Delete element
 1429033540742	Copy files
+1429084688936	Copy compilation unit
+1429084785375	Delete elements
+1429084817145	Delete elements
+1429084834801	Rename type 'GenreDAO'
+1429085060038	Copy compilation unit
+1429085069580	Rename type 'Droits'
+1429085108318	Copy compilation unit
+1429088041407	Copy compilation unit
+1429088055599	Rename field 'libelle'
+1429088105988	Copy compilation unit
+1429089398802	Copy compilation unit
+1429089543109	Copy compilation unit
+1429096208895	Copy compilation unit
+1429096326191	Copy compilation unit
+1429097092331	Encapsulate field 'date_debut'
+1429097097392	Encapsulate field 'date_fin'
+1429097999734	Copy compilation unit
+1429098190996	Rename field 'id'
+1429105147931	Copy compilation unit
+1429105174383	Rename field 'id_utilisateur'
+1429105180316	Rename field 'id_code'
+1429105317924	Copy compilation unit
+1429105378832	Rename field 'attribuerId'
+1429105464296	Copy compilation unit
+1429108443754	Copy compilation unit
+1429108622446	Encapsulate field 'date'
+1429108718047	Encapsulate field 'utilisateur'
+1429108808015	Encapsulate field 'code'
+1429108839657	Encapsulate field 'salle'
+1429109243556	Copy compilation unit

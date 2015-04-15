@@ -7,16 +7,13 @@ import model.Utilisateur;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import tools.Tools;
-
 public class ConstructJSONObjects {
 	
 	public static JSONObject getJSONforUser(Utilisateur u) {
 		return new JSONObject()
 		.put("id", u.getId())
-		.put("lastname", u.getNom())
-		.put("firstname", u.getPrenom())
-		.put("birthday", Tools.formatDateToDisplay(u.getDateNaissance()));
+		.put("nom", u.getNom())
+		.put("prenom", u.getPrenom());
 	}
 	
 	public static JSONArray getJSONArrayforListUsers(List<Utilisateur> lu) {

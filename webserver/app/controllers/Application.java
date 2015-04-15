@@ -38,19 +38,6 @@ public class Application extends Controller {
 		});*/
 		return promiseOfResult;
 	}
-	public static Promise<Result> getStringTestFromRMI() {
-		Promise<String> promise = Promise.promise(() -> 
-		{
-			/*JSONObject jo = new JSONObject();
-			jo.put("test", clientRMI.getTestString());
-			return jo.toString(); */
-			return clientRMI.getTestString();
-		});
-		Promise<Result> promiseOfResult = promise.map(result -> {
-			return ok(new JSONObject().put("value", result).toString());
-		});
-		return promiseOfResult;
-	}
 	
 	public static Promise<Result> getBookById(Integer bookId) {
 		Promise<String> promise = Promise.promise(() -> 

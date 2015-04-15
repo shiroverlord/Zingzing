@@ -1,0 +1,57 @@
+package model;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+@Entity
+@Table(name="attribuer")
+public class Attribuer implements Serializable {
+	private static final long serialVersionUID = -2381710710838826641L;
+	
+	@EmbeddedId
+	private AttribuerID id;
+	
+	private String value = null;
+	
+	public Attribuer(){}
+	
+	public Attribuer(AttribuerID id, String value) {
+		this.id = id;
+		this.value = value;
+	}
+	
+	public Attribuer(String value) {
+		this.value = value;
+	}
+	
+	public AttribuerID getId() {
+		return id;
+	}
+
+	public void setId(AttribuerID id) {
+		this.id = id;
+	}
+	
+	@Column(name="value")
+	public String getValue() {
+		return value;
+	}
+	
+	public void setValue(String value) {
+		this.value = value;
+	}
+	
+	@Transient
+	@Override
+	public String toString() {
+		return "Code:{ id:"+id.toString()+"\', value: \'"+value+"\'}";
+	}
+}

@@ -1,0 +1,99 @@
+package dao;
+
+import java.util.List;
+
+import model.Attribuer;
+
+import org.hibernate.Query;
+import org.hibernate.Transaction;
+
+public class AttribuerDAO {
+
+	public static Attribuer findById(Long id) {
+		Attribuer c = null;
+		Transaction tx = null;
+		boolean isActive = BDDUtils.getTransactionStatus();
+		try {
+			tx = BDDUtils.beginTransaction(isActive);
+			Query q = null;
+			q = BDDUtils.getCurrentSession().createQuery(
+					"SELECT c FROM Attribuer c " +
+					"WHERE c.id = :id");
+			q.setParameter("id", id);
+			c = (Attribuer) q.uniqueResult();
+			BDDUtils.commit(isActive, tx);
+		}
+		catch(Exception ex) {
+			System.out.println("Hibernate failure : "+ ex.getMessage());
+			BDDUtils.rollback(isActive, tx);
+		}
+		return c;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static List<Attribuer> getAllAttribuers() {
+		List<Attribuer> lc = null;
+		Transaction tx = null;
+		boolean isActive = BDDUtils.getTransactionStatus();
+		try {
+			tx = BDDUtils.beginTransaction(isActive);
+			Query q = null;
+			q = BDDUtils.getCurrentSession().createQuery("SELECT c FROM Attribuer c");
+			lc = (List<Attribuer>) q.list();
+			BDDUtils.commit(isActive, tx);
+		}
+		catch(Exception ex) {
+			System.out.println("Hibernate failure : "+ ex.getMessage());
+			BDDUtils.rollback(isActive, tx);
+		}
+		return lc;
+	}
+	
+	public static boolean insert(Attribuer c) {
+		Transaction tx = null;
+		boolean isActive = BDDUtils.getTransactionStatus();
+		try {
+			tx = BDDUtils.beginTransaction(isActive);
+			BDDUtils.getCurrentSession().save(c);
+			BDDUtils.commit(isActive, tx);
+		}
+		catch(Exception ex) {
+			System.out.println("Hibernate failure : "+ ex.getMessage());
+			BDDUtils.rollback(isActive, tx);
+			return false;
+		}
+		return true;
+	}
+	
+	public static boolean update(Attribuer c) {
+		Transaction tx = null;
+		boolean isActive = BDDUtils.getTransactionStatus();
+		try {
+			tx = BDDUtils.beginTransaction(isActive);
+			BDDUtils.getCurrentSession().update(c);
+			BDDUtils.commit(isActive, tx);
+		}
+		catch(Exception ex) {
+			System.out.println("Hibernate failure : "+ ex.getMessage());
+			BDDUtils.rollback(isActive, tx);
+			return false;
+		}
+		return true;
+	}
+	
+	public static boolean delete(Attribuer c) {
+		Transaction tx = null;
+		boolean isActive = BDDUtils.getTransactionStatus();
+		try {
+			tx = BDDUtils.beginTransaction(isActive);
+			BDDUtils.getCurrentSession().delete(c);
+			BDDUtils.commit(isActive, tx);
+		}
+		catch(Exception ex) {
+			System.out.println("Hibernate failure : "+ ex.getMessage());
+			BDDUtils.rollback(isActive, tx);
+			return false;
+		}
+		return true;
+	}
+}

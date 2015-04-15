@@ -10,9 +10,13 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import model.Connexion;
-import model.Genre;
-import model.TypeUtilisateur;
+import model.Attribuer;
+import model.Autoriser;
+import model.Code;
+import model.Droit;
+import model.Historique;
+import model.Salle;
+import model.Section;
 import model.Utilisateur;
 
 public class ClientSingleton {
@@ -43,7 +47,7 @@ public class ClientSingleton {
 				public void run() {
 					try {
 						if(!isConnected) {
-							System.out.println("Connexion au serveur Data");
+							System.out.println("Section au serveur Data");
 							connect();
 						}
 					} catch (Exception e) {
@@ -69,27 +73,6 @@ public class ClientSingleton {
 			clientSingleton = new ClientSingleton();
 		}
 		return clientSingleton;
-	}
-	
-	public String getTestString() {
-		String result = null;
-		try {
-			result = iRMISingleton.getTestString();
-		} 
-		catch(NoSuchObjectException e) {
-			try {
-				connect();
-				result = iRMISingleton.getTestString();
-			} catch (Exception e1) {
-				System.out.println("Serveur Data non atteignable : "+e1);
-				isConnected = false;
-			}
-		}
-		catch (Exception e) {
-			System.out.println("Serveur Data non atteignable - iRMISingleton.getTestString(): "+e);
-			isConnected = false;
-		}
-		return result;
 	}
 	
 	public List<Utilisateur> getAllUsers() {
@@ -128,133 +111,133 @@ public class ClientSingleton {
 			}
 		}
 		catch (Exception e) {
-			System.out.println("Serveur Data non atteignable - iRMISingleton.getUserById(): "+e);
+			System.out.println("Serveur Data non atteignable - iRMISingleton.getUserById(Long id): "+e);
 			isConnected = false;
 		}
 		return result;
 	}
 	
-	public List<Connexion> getAllConnexions() {
-		List<Connexion> result = null;
+	public List<Section> getAllSections() {
+		List<Section> result = null;
 		try {
-			result = iRMISingleton.getAllConnexions();
+			result = iRMISingleton.getAllSections();
 		} 
 		catch(NoSuchObjectException e) {
 			try {
 				connect();
-				result = iRMISingleton.getAllConnexions();
+				result = iRMISingleton.getAllSections();
 			} catch (Exception e1) {
 				System.out.println("Serveur Data non atteignable : "+e1);
 				isConnected = false;
 			}
 		}
 		catch (Exception e) {
-			System.out.println("Serveur Data non atteignable - iRMISingleton.getAllConnexions(): "+e);
+			System.out.println("Serveur Data non atteignable - iRMISingleton.getAllSections(): "+e);
 			isConnected = false;
 		}
 		return result;
 	}
 	
-	public Connexion getConnexionById(Long id) {
-		Connexion result = null;
+	public Section getSectionById(Long id) {
+		Section result = null;
 		try {
-			result = iRMISingleton.getConnexionById(id);
+			result = iRMISingleton.getSectionById(id);
 		} 
 		catch(NoSuchObjectException e) {
 			try {
 				connect();
-				result = iRMISingleton.getConnexionById(id);
+				result = iRMISingleton.getSectionById(id);
 			} catch (Exception e1) {
 				System.out.println("Serveur Data non atteignable : "+e1);
 				isConnected = false;
 			}
 		}
 		catch (Exception e) {
-			System.out.println("Serveur Data non atteignable - iRMISingleton.getConnexionById(): "+e);
+			System.out.println("Serveur Data non atteignable - iRMISingleton.getSectionById(Long id): "+e);
 			isConnected = false;
 		}
 		return result;
 	}
 	
-	public List<TypeUtilisateur> getAllTypeUtilisateurs() {
-		List<TypeUtilisateur> result = null;
+	public List<Droit> getAllDroits() {
+		List<Droit> result = null;
 		try {
-			result = iRMISingleton.getAllTypeUtilisateurs();
+			result = iRMISingleton.getAllDroits();
 		} 
 		catch(NoSuchObjectException e) {
 			try {
 				connect();
-				result = iRMISingleton.getAllTypeUtilisateurs();
+				result = iRMISingleton.getAllDroits();
 			} catch (Exception e1) {
 				System.out.println("Serveur Data non atteignable : "+e1);
 				isConnected = false;
 			}
 		}
 		catch (Exception e) {
-			System.out.println("Serveur Data non atteignable - iRMISingleton.getAllTypeUtilisateurs(): "+e);
+			System.out.println("Serveur Data non atteignable - iRMISingleton.getAllDroits(): "+e);
 			isConnected = false;
 		}
 		return result;
 	}
 	
-	public TypeUtilisateur getTypeUtilisateurById(Long id) {
-		TypeUtilisateur result = null;
+	public Droit getDroitById(Long id) {
+		Droit result = null;
 		try {
-			result = iRMISingleton.getTypeUtilisateurById(id);
+			result = iRMISingleton.getDroitById(id);
 		} 
 		catch(NoSuchObjectException e) {
 			try {
 				connect();
-				result = iRMISingleton.getTypeUtilisateurById(id);
+				result = iRMISingleton.getDroitById(id);
 			} catch (Exception e1) {
 				System.out.println("Serveur Data non atteignable : "+e1);
 				isConnected = false;
 			}
 		}
 		catch (Exception e) {
-			System.out.println("Serveur Data non atteignable - iRMISingleton.getTypeUtilisateurById(): "+e);
+			System.out.println("Serveur Data non atteignable - iRMISingleton.getDroitById(Long id): "+e);
 			isConnected = false;
 		}
 		return result;
 	}
 	
-	public List<Genre> getAllGenres() {
-		List<Genre> result = null;
+	public List<Salle> getAllSalles() {
+		List<Salle> result = null;
 		try {
-			result = iRMISingleton.getAllGenres();
+			result = iRMISingleton.getAllSalles();
 		} 
 		catch(NoSuchObjectException e) {
 			try {
 				connect();
-				result = iRMISingleton.getAllGenres();
+				result = iRMISingleton.getAllSalles();
 			} catch (Exception e1) {
 				System.out.println("Serveur Data non atteignable : "+e1);
 				isConnected = false;
 			}
 		}
 		catch (Exception e) {
-			System.out.println("Serveur Data non atteignable - iRMISingleton.getAllGenres(): "+e);
+			System.out.println("Serveur Data non atteignable - iRMISingleton.getAllSalles(): "+e);
 			isConnected = false;
 		}
 		return result;
 	}
 	
-	public Genre getGenreById(Long id) {
-		Genre result = null;
+	public Salle getSalleById(Long id) {
+		Salle result = null;
 		try {
-			result = iRMISingleton.getGenreById(id);
+			result = iRMISingleton.getSalleById(id);
 		} 
 		catch(NoSuchObjectException e) {
 			try {
 				connect();
-				result = iRMISingleton.getGenreById(id);
+				result = iRMISingleton.getSalleById(id);
 			} catch (Exception e1) {
 				System.out.println("Serveur Data non atteignable : "+e1);
 				isConnected = false;
 			}
 		}
 		catch (Exception e) {
-			System.out.println("Serveur Data non atteignable - iRMISingleton.getGenreById(): "+e);
+			System.out.println("Serveur Data non atteignable - iRMISingleton.getSalleById(Long id): "+e);
 			isConnected = false;
 		}
 		return result;
@@ -262,5 +245,214 @@ public class ClientSingleton {
 	
 	public static boolean isConnected() {
 		return isConnected;
+	}
+	
+	public List<Code> getAllCodes() {
+		List<Code> result = null;
+		try {
+			result = iRMISingleton.getAllCodes();
+		} 
+		catch(NoSuchObjectException e) {
+			try {
+				connect();
+				result = iRMISingleton.getAllCodes();
+			} catch (Exception e1) {
+				System.out.println("Serveur Data non atteignable : "+e1);
+				isConnected = false;
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Serveur Data non atteignable - iRMISingleton.getAllCodes(): "+e);
+			isConnected = false;
+		}
+		return result;
+	}
+	
+	public Code getCodeById(Long id) {
+		Code result = null;
+		try {
+			result = iRMISingleton.getCodeById(id);
+		} 
+		catch(NoSuchObjectException e) {
+			try {
+				connect();
+				result = iRMISingleton.getCodeById(id);
+			} catch (Exception e1) {
+				System.out.println("Serveur Data non atteignable : "+e1);
+				isConnected = false;
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Serveur Data non atteignable - iRMISingleton.getCodeById(Long id): "+e);
+			isConnected = false;
+		}
+		return result;
+	}
+	
+	public List<Attribuer> getAllAttribuers() {
+		List<Attribuer> result = null;
+		try {
+			result = iRMISingleton.getAllAttribuers();
+		} 
+		catch(NoSuchObjectException e) {
+			try {
+				connect();
+				result = iRMISingleton.getAllAttribuers();
+			} catch (Exception e1) {
+				System.out.println("Serveur Data non atteignable : "+e1);
+				isConnected = false;
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Serveur Data non atteignable - iRMISingleton.getAllAttribuers(): "+e);
+			isConnected = false;
+		}
+		return result;
+	}
+	
+	public List<Attribuer> getAttribuerByUtilisateurId(Long idUtilisateur) {
+		List<Attribuer> result = null;
+		try {
+			result = iRMISingleton.getAttribuerByUtilisateurId(idUtilisateur);
+		} 
+		catch(NoSuchObjectException e) {
+			try {
+				connect();
+				result = iRMISingleton.getAttribuerByUtilisateurId(idUtilisateur);
+			} catch (Exception e1) {
+				System.out.println("Serveur Data non atteignable : "+e1);
+				isConnected = false;
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Serveur Data non atteignable - iRMISingleton.getAttribuerByUtilisateurId(Long idUtilisateur): "+e);
+			isConnected = false;
+		}
+		return result;
+	}
+	
+	public List<Attribuer> getAttribuerByCodeId(Long idCode) {
+		List<Attribuer> result = null;
+		try {
+			result = iRMISingleton.getAttribuerByCodeId(idCode);
+		} 
+		catch(NoSuchObjectException e) {
+			try {
+				connect();
+				result = iRMISingleton.getAttribuerByCodeId(idCode);
+			} catch (Exception e1) {
+				System.out.println("Serveur Data non atteignable : "+e1);
+				isConnected = false;
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Serveur Data non atteignable - iRMISingleton.getAttribuerByCodeId(Long idCode): "+e);
+			isConnected = false;
+		}
+		return result;
+	}
+	
+	public List<Autoriser> getAllAutorisers() {
+		List<Autoriser> result = null;
+		try {
+			result = iRMISingleton.getAllAutorisers();
+		} 
+		catch(NoSuchObjectException e) {
+			try {
+				connect();
+				result = iRMISingleton.getAllAutorisers();
+			} catch (Exception e1) {
+				System.out.println("Serveur Data non atteignable : "+e1);
+				isConnected = false;
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Serveur Data non atteignable - iRMISingleton.getAllAutorisers(): "+e);
+			isConnected = false;
+		}
+		return result;
+	}
+	
+	public List<Autoriser> getAutoriserByDroitId(Long idDroit) {
+		List<Autoriser> result = null;
+		try {
+			result = iRMISingleton.getAutoriserByDroitId(idDroit);
+		} 
+		catch(NoSuchObjectException e) {
+			try {
+				connect();
+				result = iRMISingleton.getAutoriserByDroitId(idDroit);
+			} catch (Exception e1) {
+				System.out.println("Serveur Data non atteignable : "+e1);
+				isConnected = false;
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Serveur Data non atteignable - iRMISingleton.getAutoriserByDroitId(Long idDroit): "+e);
+			isConnected = false;
+		}
+		return result;
+	}
+	
+	public List<Autoriser> getAutoriserBySalleId(Long idSalle) {
+		List<Autoriser> result = null;
+		try {
+			result = iRMISingleton.getAutoriserBySalleId(idSalle);
+		} 
+		catch(NoSuchObjectException e) {
+			try {
+				connect();
+				result = iRMISingleton.getAutoriserBySalleId(idSalle);
+			} catch (Exception e1) {
+				System.out.println("Serveur Data non atteignable : "+e1);
+				isConnected = false;
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Serveur Data non atteignable - iRMISingleton.getAutoriserBySalleId(Long idSalle): "+e);
+			isConnected = false;
+		}
+		return result;
+	}
+	public List<Historique> getAllHistoriques() {
+		List<Historique> result = null;
+		try {
+			result = iRMISingleton.getAllHistoriques();
+		} 
+		catch(NoSuchObjectException e) {
+			try {
+				connect();
+				result = iRMISingleton.getAllHistoriques();
+			} catch (Exception e1) {
+				System.out.println("Serveur Data non atteignable : "+e1);
+				isConnected = false;
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Serveur Data non atteignable - iRMISingleton.getAllHistoriques(): "+e);
+			isConnected = false;
+		}
+		return result;
+	}
+	
+	public Historique getHistoriqueById(Long id) {
+		Historique result = null;
+		try {
+			result = iRMISingleton.getHistoriqueById(id);
+		} 
+		catch(NoSuchObjectException e) {
+			try {
+				connect();
+				result = iRMISingleton.getHistoriqueById(id);
+			} catch (Exception e1) {
+				System.out.println("Serveur Data non atteignable : "+e1);
+				isConnected = false;
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Serveur Data non atteignable - iRMISingleton.getHistoriqueById(Long id): "+e);
+			isConnected = false;
+		}
+		return result;
 	}
 }

@@ -1,3 +1,7 @@
+import com.typesafe.sbt.packager.Keys._
+
+scriptClasspath := Seq("*")
+
 name := """webserver"""
 
 version := "1.0-SNAPSHOT"

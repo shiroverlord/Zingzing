@@ -10,19 +10,31 @@ import java.util.Date;
 public class Tools {
 	
 	public static String formatDateToDisplay(Calendar cal) {
-		return cal.toInstant().toString();
+		if(cal != null){
+			return cal.toInstant().toString();
+		}
+		return null;
 	}
 	
 	public static String formatDateToDisplay(Date date) {
-		return date.toInstant().toString();
+		if(date != null){
+			return date.toInstant().toString();
+		}
+		return null;
 	}
 	
 	public static String formatDateToDisplay(Instant instant) {
-		return instant.toString();
+		if(instant != null){
+			return instant.toString();
+		}
+		return null;
 	}
 	
 	public static String formatDateToDisplay(ZonedDateTime zdt) {
-		return zdt.format(DateTimeFormatter.ISO_INSTANT);
+		if(zdt != null){
+			return zdt.format(DateTimeFormatter.ISO_INSTANT);
+		}
+		return null;
 	}
 	
 	public static ZonedDateTime parseInstantToZonedDateTime(Instant ins) {

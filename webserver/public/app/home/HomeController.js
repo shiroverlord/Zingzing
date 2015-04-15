@@ -9,14 +9,7 @@ function HomeCtrl($resource) {
             'get': {method:'GET', isArray:false}
         }
     );
-	var testStringFromRMI = $resource('/api/testRMI/string',
-        {},
-        {
-            'get': {method:'GET', isArray:false}
-        }
-    );
 	this.resultTestString = testString.get();
-	this.resultTestRMIString = testStringFromRMI.get();
 }
 angular
     .module('libraryApp')

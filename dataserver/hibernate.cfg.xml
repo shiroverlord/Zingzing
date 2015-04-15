@@ -16,7 +16,7 @@
   		
 		<!-- Connection settings -->
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-		<property name="hibernate.connection.url">jdbc:postgresql://localhost/filrouge</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://localhost/zingzing</property>
 		<property name="hibernate.connection.username">postgres</property>
 		<property name="hibernate.connection.password">password</property>
 		
@@ -37,9 +37,15 @@
         <property name="hibernate.show_sql">false</property>
 
         <!-- Annotated entity classes -->
-        <mapping class="model.Connexion"/>
-        <mapping class="model.Genre"/>
-        <mapping class="model.TypeUtilisateur"/>
+        <mapping class="model.AutoriserID"/>
+        <mapping class="model.Autoriser"/>
+        <mapping class="model.AttribuerID"/>
+        <mapping class="model.Attribuer"/>
+        <mapping class="model.Code"/>
+        <mapping class="model.Droit"/>
+        <mapping class="model.Salle"/>
+        <mapping class="model.Section"/>
         <mapping class="model.Utilisateur"/>
+        <mapping class="model.Historique"/>
 	</session-factory>
 </hibernate-configuration>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "classpath://org/hibernate/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.c3p0.acquire_increment">1</property>
+        <property name="hibernate.c3p0.idle_test_period">20</property>
+        <property name="hibernate.c3p0.max_size">40</property>
+        <property name="hibernate.c3p0.max_statements">0</property>
+        <property name="hibernate.c3p0.min_size">10</property>
+        <property name="hibernate.c3p0.timeout">60</property>
+        
+        <property name="hibernate.cache.use_second_level_cache">false</property>
+  		<property name="hibernate.cache.use_query_cache">false</property>
+  		
+		<!-- Connection settings -->
+		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://localhost/zingzing</property>
+		<property name="hibernate.connection.username">postgres</property>
+		<property name="hibernate.connection.password">password</property>
+		
+		 <!-- JDBC connection pool (use the built-in) -->
+	    <property name="connection.pool_size">1</property>
+	
+	    <!-- SQL dialect -->
+	    <property name="dialect">org.hibernate.dialect.PostgreSQL9Dialect</property>
+	    
+	    <!-- Disable the second-level cache  -->
+        <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+	
+	    <!-- Enable Hibernate's automatic session context management -->
+	    <property name="current_session_context_class">thread</property>
+	
+	    <!-- Echo all executed SQL to stdout -->
+	    <property name="hibernate.format_sql">false</property>
+        <property name="hibernate.show_sql">false</property>
+
+        <!-- Annotated entity classes -->
+        <mapping class="model.AutoriserID"/>
+        <mapping class="model.Autoriser"/>
+        <mapping class="model.AttribuerID"/>
+        <mapping class="model.Attribuer"/>
+        <mapping class="model.Code"/>
+        <mapping class="model.Droit"/>
+        <mapping class="model.Salle"/>
+        <mapping class="model.Section"/>
+        <mapping class="model.Utilisateur"/>
+	</session-factory>
+</hibernate-configuration>

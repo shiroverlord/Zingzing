@@ -1,0 +1,58 @@
+package rmi;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.util.List;
+
+import model.Attribuer;
+import model.Autoriser;
+import model.Code;
+import model.Droit;
+import model.Salle;
+import model.Section;
+import model.Utilisateur;
+
+public interface RmiInterface extends Remote {
+	public static final int RMI_PORT = 1099;
+	public static final String RMI_HOST = "localhost";
+	public static final String RMI_NAME = "dataserverRMI";
+	public static final String RMI_URL = "rmi://"+RMI_HOST+":"+RMI_PORT+"/"+RMI_NAME;
+	
+	public List<Utilisateur> getAllUsers() throws RemoteException;
+	public Utilisateur getUserById(Long id) throws RemoteException;
+	public boolean insertUser(Utilisateur user) throws RemoteException;
+	public boolean updateUser(Utilisateur user) throws RemoteException;
+	public boolean deleteUser(Utilisateur user) throws RemoteException;
+	
+	public List<Droit> getAllDroits() throws RemoteException;
+	public Droit getDroitById(Long id) throws RemoteException;
+	public boolean insertDroit(Droit droit) throws RemoteException;
+	public boolean updateDroit(Droit droit) throws RemoteException;
+	
+	public List<Code> getAllCodes() throws RemoteException;
+	public Code getCodeById(Long id) throws RemoteException;
+	public boolean insertCode(Code code) throws RemoteException;
+	public boolean updateCode(Code code) throws RemoteException;
+	
+	public List<Section> getAllSections() throws RemoteException;
+	public Section getSectionById(Long id) throws RemoteException;
+	public boolean insertSection(Section section) throws RemoteException;
+	public boolean updateSection(Section section) throws RemoteException;
+	
+	public List<Salle> getAllSalles() throws RemoteException;
+	public Salle getSalleById(Long id) throws RemoteException;
+	public boolean insertSalle(Salle salle) throws RemoteException;
+	public boolean updateSalle(Salle salle) throws RemoteException;
+	
+	public List<Attribuer> getAllAttribuers() throws RemoteException;
+	public List<Attribuer> getAttribuerByUtilisateurId(Long idUtilisateur) throws RemoteException;
+	public List<Attribuer> getAttribuerByCodeId(Long idCode) throws RemoteException;
+	public boolean insertAttribuer(Attribuer attribuer) throws RemoteException;
+	public boolean updateAttribuer(Attribuer attribuer) throws RemoteException;
+	
+	public List<Autoriser> getAllAutorisers() throws RemoteException;
+	public List<Autoriser> getAutoriserByDroitId(Long idDroit) throws RemoteException;
+	public List<Autoriser> getAutoriserBySalleId(Long idSalle) throws RemoteException;
+	public boolean insertAutoriser(Autoriser autoriser) throws RemoteException;
+	public boolean updateAutoriser(Autoriser autoriser) throws RemoteException;
+}
