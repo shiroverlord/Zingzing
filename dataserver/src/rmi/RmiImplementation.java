@@ -203,4 +203,9 @@ public class RmiImplementation extends UnicastRemoteObject implements RmiInterfa
 	public boolean updateHistorique(Historique historique) throws RemoteException {
 		return HistoriqueDAO.update(historique);
 	}
+
+	@Override
+	public Utilisateur getUserByIdFull(Long id) throws RemoteException {
+		return UtilisateurDAO.findByIdFull(id);
+	}
 }

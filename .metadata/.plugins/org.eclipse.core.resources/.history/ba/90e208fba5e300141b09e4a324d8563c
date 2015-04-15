@@ -1,0 +1,60 @@
+package model;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Transient;
+
+@Embeddable
+public class AttribuerID implements Serializable {
+	private static final long serialVersionUID = -2381710710838826641L;
+	
+	public Long id_utilisateur;
+	public Long id_code;
+	
+	public AttribuerID(){}
+	
+	public AttribuerID(Long idUtilisateur, Long idCode) {
+		this.id_utilisateur = idUtilisateur;
+		this.id_code = idCode;
+	}
+
+	@Transient
+	@Override
+	public String toString() {
+		return "AttribuerID:{ idUtilisateur:"+id_utilisateur+"\', idCode: \'"+id_code+"\'}";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id_code == null) ? 0 : id_code.hashCode());
+		result = prime * result
+				+ ((id_utilisateur == null) ? 0 : id_utilisateur.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AttribuerID other = (AttribuerID) obj;
+		if (id_code == null) {
+			if (other.id_code != null)
+				return false;
+		} else if (!id_code.equals(other.id_code))
+			return false;
+		if (id_utilisateur == null) {
+			if (other.id_utilisateur != null)
+				return false;
+		} else if (!id_utilisateur.equals(other.id_utilisateur))
+			return false;
+		return true;
+	}
+}

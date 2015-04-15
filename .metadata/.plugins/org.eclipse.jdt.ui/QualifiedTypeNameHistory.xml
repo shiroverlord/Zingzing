@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="model.Utilisateur"/>
-<fullyQualifiedTypeName name="javax.persistence.IdClass"/>
 <fullyQualifiedTypeName name="javax.persistence.Embeddable"/>
 <fullyQualifiedTypeName name="javax.persistence.EmbeddedId"/>
 <fullyQualifiedTypeName name="dao.DroitDAO"/>
@@ -11,7 +10,6 @@
 <fullyQualifiedTypeName name="model.Droit"/>
 <fullyQualifiedTypeName name="model.Salle"/>
 <fullyQualifiedTypeName name="model.Code"/>
-<fullyQualifiedTypeName name="model.Attribuer"/>
 <fullyQualifiedTypeName name="dao.AttribuerDAO"/>
 <fullyQualifiedTypeName name="dao.AutoriserDAO"/>
 <fullyQualifiedTypeName name="model.Autoriser"/>
@@ -19,4 +17,12 @@
 <fullyQualifiedTypeName name="tools.Tools"/>
 <fullyQualifiedTypeName name="dao.HistoriqueDAO"/>
 <fullyQualifiedTypeName name="model.Historique"/>
+<fullyQualifiedTypeName name="javax.persistence.AttributeOverrides"/>
+<fullyQualifiedTypeName name="javax.persistence.AttributeOverride"/>
+<fullyQualifiedTypeName name="model.AutoriserID"/>
+<fullyQualifiedTypeName name="javax.persistence.Id"/>
+<fullyQualifiedTypeName name="javax.persistence.IdClass"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="model.Attribuer"/>
+<fullyQualifiedTypeName name="dao.UtilisateurDAO"/>
 </qualifiedTypeNameHistroy>

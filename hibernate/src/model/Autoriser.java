@@ -2,9 +2,6 @@ package model;
 
 import java.io.Serializable;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
-import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -15,6 +12,7 @@ import javax.persistence.Transient;
 public class Autoriser implements Serializable {
 	private static final long serialVersionUID = -2381710710838826641L;
 	
+	@EmbeddedId
 	private AutoriserID autoriserId = null;
 	
 	public Autoriser(){}
@@ -23,10 +21,6 @@ public class Autoriser implements Serializable {
 		this.autoriserId = attribuerId;
 	}
 	
-	@EmbeddedId
-    @AttributeOverrides( {
-    @AttributeOverride(name="id_droit", column=@Column(name="id_droit", nullable=false) ), 
-    @AttributeOverride(name="id_salle", column=@Column(name="id_salle", nullable=false) ) } )
 	public AutoriserID getId() {
 		return autoriserId;
 	}
@@ -38,7 +32,7 @@ public class Autoriser implements Serializable {
 	@Transient
 	@Override
 	public String toString() {
-		return "Code:{ attribuerId:"+autoriserId.toString()+"\'}";
+		return "Code:{ autoriserId: \'"+autoriserId+"\'}";
 	}
 
 	@Override

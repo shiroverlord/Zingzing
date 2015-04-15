@@ -21,6 +21,7 @@ public interface RmiInterface extends Remote {
 	
 	public List<Utilisateur> getAllUsers() throws RemoteException;
 	public Utilisateur getUserById(Long id) throws RemoteException;
+	public Utilisateur getUserByIdFull(Long id) throws RemoteException;
 	public boolean insertUser(Utilisateur user) throws RemoteException;
 	public boolean updateUser(Utilisateur user) throws RemoteException;
 	public boolean deleteUser(Utilisateur user) throws RemoteException;

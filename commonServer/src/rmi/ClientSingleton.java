@@ -117,6 +117,27 @@ public class ClientSingleton {
 		return result;
 	}
 	
+	public Utilisateur getUserByIdFull(Long id) {
+		Utilisateur result = null;
+		try {
+			result = iRMISingleton.getUserByIdFull(id);
+		} 
+		catch(NoSuchObjectException e) {
+			try {
+				connect();
+				result = iRMISingleton.getUserByIdFull(id);
+			} catch (Exception e1) {
+				System.out.println("Serveur Data non atteignable : "+e1);
+				isConnected = false;
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Serveur Data non atteignable - iRMISingleton.getUserByIdFull(Long id): "+e);
+			isConnected = false;
+		}
+		return result;
+	}
+	
 	public List<Section> getAllSections() {
 		List<Section> result = null;
 		try {

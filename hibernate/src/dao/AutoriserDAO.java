@@ -9,7 +9,7 @@ import org.hibernate.Transaction;
 
 public class AutoriserDAO {
 
-	public static Autoriser findByIds(Long id_droit, Long id_salle) {
+	public static Autoriser findByIds(Long idDroit, Long idSalle) {
 		Autoriser a = null;
 		Transaction tx = null;
 		boolean isActive = BDDUtils.getTransactionStatus();
@@ -18,10 +18,10 @@ public class AutoriserDAO {
 			Query q = null;
 			q = BDDUtils.getCurrentSession().createQuery(
 					"SELECT a FROM Autoriser a " +
-					"WHERE a.autoriserId.id_droit = :id_droit " +
-					"AND a.autoriserId.id_salle = :id_salle");
-			q.setParameter("id_droit", id_droit);
-			q.setParameter("id_salle", id_salle);
+					"WHERE a.autoriserId.linkedDroit.id = :idDroit " +
+					"AND a.autoriserId.linkedSalle.id = :idSalle");
+			q.setParameter("idDroit", idDroit);
+			q.setParameter("id_salle", idSalle);
 			a = (Autoriser) q.uniqueResult();
 			BDDUtils.commit(isActive, tx);
 		}
@@ -33,7 +33,7 @@ public class AutoriserDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static List<Autoriser> getAutorisersByDroitId(Long id_droit) {
+	public static List<Autoriser> getAutorisersByDroitId(Long idDroit) {
 		List<Autoriser> la = null;
 		Transaction tx = null;
 		boolean isActive = BDDUtils.getTransactionStatus();
@@ -42,8 +42,8 @@ public class AutoriserDAO {
 			Query q = null;
 			q = BDDUtils.getCurrentSession().createQuery(
 					"SELECT a FROM Autoriser a " +
-					"WHERE a.autoriserId.id_droit = :id_droit");
-			q.setParameter("id_droit", id_droit);
+					"WHERE a.autoriserId.linkedDroit.id = :idDroit");
+			q.setParameter("idDroit", idDroit);
 			la = (List<Autoriser>) q.list();
 			BDDUtils.commit(isActive, tx);
 		}
@@ -55,7 +55,7 @@ public class AutoriserDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static List<Autoriser> getAutorisersBySalleId(Long id_salle) {
+	public static List<Autoriser> getAutorisersBySalleId(Long idSalle) {
 		List<Autoriser> la = null;
 		Transaction tx = null;
 		boolean isActive = BDDUtils.getTransactionStatus();
@@ -64,8 +64,8 @@ public class AutoriserDAO {
 			Query q = null;
 			q = BDDUtils.getCurrentSession().createQuery(
 					"SELECT a FROM Autoriser a " +
-					"WHERE a.autoriserId.id_salle = :id_salle");
-			q.setParameter("id_salle", id_salle);
+					"WHERE a.autoriserId.linkedSalle.id = :idSalle");
+			q.setParameter("idSalle", idSalle);
 			la = (List<Autoriser>) q.list();
 			BDDUtils.commit(isActive, tx);
 		}

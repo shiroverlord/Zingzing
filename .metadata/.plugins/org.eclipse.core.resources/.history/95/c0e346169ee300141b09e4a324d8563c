@@ -1,0 +1,83 @@
+package model;
+
+import java.io.Serializable;
+
+import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+
+@Embeddable
+public class AutoriserID implements Serializable {
+	private static final long serialVersionUID = -2381710710838826641L;
+	
+	private Droit linked_droit = null;
+	private Salle salle = null;
+	
+	public AutoriserID(){}
+	
+	public AutoriserID(Droit droit, Salle salle) {
+		this.linked_droit = droit;
+		this.salle = salle;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="id_droit", nullable=false)
+	public Droit getIdDroit() {
+		return linked_droit;
+	}
+
+	public void setIdDroit(Droit droit) {
+		this.linked_droit = droit;
+	}
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="id_salle", nullable=false)
+	public Salle getIdSalle() {
+		return salle;
+	}
+	
+	public void setIdSalle(Salle salle) {
+		this.salle = salle;
+	}
+	
+	@Transient
+	@Override
+	public String toString() {
+		return "AutoriserID:{ Droit:"+linked_droit+"\', Salle: \'"+salle+"\'}";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((linked_droit == null) ? 0 : linked_droit.hashCode());
+		result = prime * result
+				+ ((salle == null) ? 0 : salle.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AutoriserID other = (AutoriserID) obj;
+		if (linked_droit == null) {
+			if (other.linked_droit != null)
+				return false;
+		} else if (!linked_droit.equals(other.linked_droit))
+			return false;
+		if (salle == null) {
+			if (other.salle != null)
+				return false;
+		} else if (!salle.equals(other.salle))
+			return false;
+		return true;
+	}
+}

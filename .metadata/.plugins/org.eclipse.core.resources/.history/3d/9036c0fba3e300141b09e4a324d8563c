@@ -1,0 +1,135 @@
+package model;
+
+import java.io.Serializable;
+import java.util.Calendar;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import tools.Tools;
+
+@Entity
+@Table(name="attribuer")
+@IdClass(AttribuerID.class)
+public class Attribuer implements Serializable {
+	private static final long serialVersionUID = -2381710710838826641L;
+	
+	//private AttribuerID attribuerId;
+	private Long idUtilisateur;
+	private Long idCode;
+	private Calendar date_debut = null;
+	private Calendar date_fin = null;
+	
+	public Attribuer(){}
+	
+	public Attribuer(Long idUtilisateur, Long idCode, Calendar date_debut) {
+		this(idUtilisateur, idCode, date_debut, null);
+	}
+	
+	public Attribuer(Long idUtilisateur, Long idCode, Calendar date_debut, Calendar date_fin) {
+		this.idUtilisateur = idUtilisateur;
+		this.idCode = idCode;
+		this.date_debut = date_debut;
+		this.date_fin = date_fin;
+	}
+	
+	public Attribuer(Calendar date_debut) {
+		this(date_debut, null);
+	}
+	
+	public Attribuer(Calendar date_debut, Calendar date_fin) {
+		this.date_debut = date_debut;
+		this.date_fin = date_fin;
+	}
+	
+	
+	@Column(name="date_debut")
+	public Calendar getDate_debut() {
+		return date_debut;
+	}
+
+	public void setDate_debut(Calendar date_debut) {
+		this.date_debut = date_debut;
+	}
+
+	@Column(name="date_fin")
+	public Calendar getDate_fin() {
+		return date_fin;
+	}
+
+	public void setDate_fin(Calendar date_fin) {
+		this.date_fin = date_fin;
+	}
+
+	public Long getIdUtilisateur() {
+		return idUtilisateur;
+	}
+
+	public void setIdUtilisateur(Long idUtilisateur) {
+		this.idUtilisateur = idUtilisateur;
+	}
+
+	public Long getIdCode() {
+		return idCode;
+	}
+
+	public void setIdCode(Long idCode) {
+		this.idCode = idCode;
+	}
+
+	@Transient
+	@Override
+	public String toString() {
+		return "Code:{ idUtilisateur:"+idUtilisateur+"\', idCode: \'"+idCode+"\', dateDebut: \'"+Tools.formatDateToDisplay(date_debut)+"\', dateDebut: \'"+Tools.formatDateToDisplay(date_fin)+"\'}";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((date_debut == null) ? 0 : date_debut.hashCode());
+		result = prime * result
+				+ ((date_fin == null) ? 0 : date_fin.hashCode());
+		result = prime * result + ((idCode == null) ? 0 : idCode.hashCode());
+		result = prime * result
+				+ ((idUtilisateur == null) ? 0 : idUtilisateur.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Attribuer other = (Attribuer) obj;
+		if (date_debut == null) {
+			if (other.date_debut != null)
+				return false;
+		} else if (!date_debut.equals(other.date_debut))
+			return false;
+		if (date_fin == null) {
+			if (other.date_fin != null)
+				return false;
+		} else if (!date_fin.equals(other.date_fin))
+			return false;
+		if (idCode == null) {
+			if (other.idCode != null)
+				return false;
+		} else if (!idCode.equals(other.idCode))
+			return false;
+		if (idUtilisateur == null) {
+			if (other.idUtilisateur != null)
+				return false;
+		} else if (!idUtilisateur.equals(other.idUtilisateur))
+			return false;
+		return true;
+	}
+}

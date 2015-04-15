@@ -2,46 +2,51 @@ package model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 @Embeddable
 public class AutoriserID implements Serializable {
 	private static final long serialVersionUID = -2381710710838826641L;
 	
-	private Long id_droit = null;
-	private Long id_salle = null;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="id_droit", nullable=false)
+	private Droit linkedDroit = null;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="id_salle", nullable=false)
+	private Salle linkedSalle = null;
 	
 	public AutoriserID(){}
 	
-	public AutoriserID(Long id_droit, Long id_salle) {
-		this.id_droit = id_droit;
-		this.id_salle = id_salle;
-	}
-
-	@Column(name="id_droit", nullable=false)
-	public Long getIdDroit() {
-		return id_droit;
-	}
-
-	public void setIdDroit(Long id_droit) {
-		this.id_droit = id_droit;
+	public AutoriserID(Droit droit, Salle salle) {
+		this.linkedDroit = droit;
+		this.linkedSalle = salle;
 	}
 	
-	@Column(name="id_salle", nullable=false)
-	public Long getIdSalle() {
-		return id_salle;
+	public Droit getDroit() {
+		return linkedDroit;
+	}
+
+	public void setDroit(Droit droit) {
+		this.linkedDroit = droit;
 	}
 	
-	public void setIdSalle(Long id_code) {
-		this.id_salle = id_code;
+	public Salle getSalle() {
+		return linkedSalle;
+	}
+	
+	public void setSalle(Salle salle) {
+		this.linkedSalle = salle;
 	}
 	
 	@Transient
 	@Override
 	public String toString() {
-		return "AutoriserID:{ idDroit:"+id_droit+"\', idSalle: \'"+id_salle+"\'}";
+		return "AutoriserID:{ linkedDroit: \'"+linkedDroit+"\', linkedSalle: \'"+linkedSalle+"\'}";
 	}
 
 	@Override
@@ -49,9 +54,9 @@ public class AutoriserID implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((id_droit == null) ? 0 : id_droit.hashCode());
+				+ ((linkedDroit == null) ? 0 : linkedDroit.hashCode());
 		result = prime * result
-				+ ((id_salle == null) ? 0 : id_salle.hashCode());
+				+ ((linkedSalle == null) ? 0 : linkedSalle.hashCode());
 		return result;
 	}
 
@@ -64,15 +69,15 @@ public class AutoriserID implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		AutoriserID other = (AutoriserID) obj;
-		if (id_droit == null) {
-			if (other.id_droit != null)
+		if (linkedDroit == null) {
+			if (other.linkedDroit != null)
 				return false;
-		} else if (!id_droit.equals(other.id_droit))
+		} else if (!linkedDroit.equals(other.linkedDroit))
 			return false;
-		if (id_salle == null) {
-			if (other.id_salle != null)
+		if (linkedSalle == null) {
+			if (other.linkedSalle != null)
 				return false;
-		} else if (!id_salle.equals(other.id_salle))
+		} else if (!linkedSalle.equals(other.linkedSalle))
 			return false;
 		return true;
 	}

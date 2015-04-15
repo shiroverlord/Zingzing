@@ -1,0 +1,80 @@
+package model;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Transient;
+
+@Embeddable
+public class AttribuerID implements Serializable {
+	private static final long serialVersionUID = -2381710710838826641L;
+	
+	private Long idUtilisateur;
+	private Long idCode;
+	
+	public AttribuerID(){}
+	
+	public AttribuerID(Long id_utilisateur, Long id_code) {
+		this.idUtilisateur = id_utilisateur;
+		this.idCode = id_code;
+	}
+
+	@Column(name="id_utilisateur", nullable=false)
+	public Long getIdUtilisateur() {
+		return idUtilisateur;
+	}
+
+	public void setIdUtilisateur(Long id_utilisateur) {
+		this.idUtilisateur = id_utilisateur;
+	}
+	
+	@Column(name="id_code", nullable=false)
+	public Long getIdCode() {
+		return idCode;
+	}
+	
+	public void setIdCode(Long id_code) {
+		this.idCode = id_code;
+	}
+	
+	@Transient
+	@Override
+	public String toString() {
+		return "AttribuerID:{ idUtilisateur:"+idUtilisateur+"\', idCode: \'"+idCode+"\'}";
+	}
+
+	@Transient
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((idCode == null) ? 0 : idCode.hashCode());
+		result = prime * result
+				+ ((idUtilisateur == null) ? 0 : idUtilisateur.hashCode());
+		return result;
+	}
+
+	@Transient
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AttribuerID other = (AttribuerID) obj;
+		if (idCode == null) {
+			if (other.idCode != null)
+				return false;
+		} else if (!idCode.equals(other.idCode))
+			return false;
+		if (idUtilisateur == null) {
+			if (other.idUtilisateur != null)
+				return false;
+		} else if (!idUtilisateur.equals(other.idUtilisateur))
+			return false;
+		return true;
+	}
+}

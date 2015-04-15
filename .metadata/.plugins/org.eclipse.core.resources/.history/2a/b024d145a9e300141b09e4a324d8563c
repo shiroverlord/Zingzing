@@ -1,0 +1,53 @@
+package test;
+
+import model.Attribuer;
+import model.Autoriser;
+import rmi.ClientSingleton;
+
+public class Main {
+	public static void main(String[] args) {
+		System.out.println(System.getProperty("user.dir"));
+		System.setProperty("java.security.policy", "client.policy");
+		ClientSingleton clientS = ClientSingleton.getInstance();
+		if(clientS != null) {
+			System.out.println("Test Section = " + clientS.getAllSections());
+			
+			System.out.println("Test Salle = " + clientS.getAllSalles());
+			
+			System.out.println("Test Droit = " + clientS.getAllDroits());
+			
+			System.out.println("Test Code = " + clientS.getAllCodes());
+			
+			for (Attribuer attribuer : clientS.getAllAttribuers()) {
+				System.out.println("Test Attribuer pour le code ID 1 (ID du code) = " + attribuer.getId().getCode().getId());
+				System.out.println("Test Attribuer pour le code ID 1 (ID de l'utilisateur) = " + attribuer.getId().getUtilisateur().getId());
+			}
+			
+			for (Attribuer attribuer : clientS.getAttribuerByCodeId(1l)) {
+				System.out.println("Test Attribuer pour le code ID 1 (ID du code) = " + attribuer.getId().getCode().getId());
+				System.out.println("Test Attribuer pour le code ID 1 (ID de l'utilisateur) = " + attribuer.getId().getUtilisateur().getId());
+			}
+			
+			for (Attribuer attribuer : clientS.getAttribuerByUtilisateurId(2l)) {
+				System.out.println("Test Attribuer pour l'utilisateur ID 2 (ID du code) = " + attribuer.getId().getCode().getId());
+				System.out.println("Test Attribuer pour l'utilisateur ID 2 (ID de l'utilisateur) = " + attribuer.getId().getUtilisateur().getId());
+			}
+			
+			System.out.println("Test Autoriser = " + clientS.getAllAutorisers());
+			
+			for (Autoriser attribuer : clientS.getAutoriserByDroitId(1l)) {
+				System.out.println("Test Autoriser pour le droit ID 1 (ID du droit) = " + attribuer.getId().getDroit().getId());
+				System.out.println("Test Autoriser pour le droit ID 1 (ID de la salle) = " + attribuer.getId().getSalle().getId());
+			}
+			
+			for (Autoriser attribuer : clientS.getAutoriserBySalleId(1l)) {
+				System.out.println("Test Autoriser pour la salle ID 1 (ID du droit) = " + attribuer.getId().getDroit().getId());
+				System.out.println("Test Autoriser pour la salle ID 1 (ID de la salle) = " + attribuer.getId().getSalle().getId());
+			}
+			
+			System.out.println("Test Utilisateurs = " + clientS.getAllUsers());
+			
+			System.out.println("Test Historique = " + clientS.getAllHistoriques());
+		}
+	}
+}

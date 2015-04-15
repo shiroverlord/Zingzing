@@ -18,8 +18,8 @@ public class AttribuerDAO {
 			Query q = null;
 			q = BDDUtils.getCurrentSession().createQuery(
 					"SELECT a FROM Attribuer a " +
-					"WHERE a.attribuerId.id_utilisateur = :idUtilisateur " +
-					"AND a.attribuerId.id_code = :idCode");
+					"WHERE a.attribuerId.linkedUtilisateur.id = :idUtilisateur " +
+					"AND a.attribuerId.linkedCode.id = :idCode");
 			q.setParameter("idUtilisateur", idUtilisateur);
 			q.setParameter("idCode", idCode);
 			a = (Attribuer) q.uniqueResult();
@@ -42,7 +42,7 @@ public class AttribuerDAO {
 			Query q = null;
 			q = BDDUtils.getCurrentSession().createQuery(
 					"SELECT a FROM Attribuer a " +
-					"WHERE a.attribuerId.id_utilisateur = :idUtilisateur");
+					"WHERE a.attribuerId.linkedUtilisateur.id = :idUtilisateur");
 			q.setParameter("idUtilisateur", idUtilisateur);
 			la = (List<Attribuer>) q.list();
 			BDDUtils.commit(isActive, tx);
@@ -64,7 +64,7 @@ public class AttribuerDAO {
 			Query q = null;
 			q = BDDUtils.getCurrentSession().createQuery(
 					"SELECT a FROM Attribuer a " +
-					"WHERE a.attribuerId.id_code = :idCode");
+					"WHERE a.attribuerId.linkedCode.id = :idCode");
 			q.setParameter("idCode", idCode);
 			la = (List<Attribuer>) q.list();
 			BDDUtils.commit(isActive, tx);

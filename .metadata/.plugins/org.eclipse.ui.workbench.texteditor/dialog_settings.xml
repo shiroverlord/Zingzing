@@ -2,29 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="Historique" key="selection"/>
+		<item value="id_code" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="id_salle"/>
+			<item value="getIdSalle"/>
+			<item value="id_droit"/>
+			<item value="id_utilisateur"/>
+			<item value="getIdDroit"/>
 			<item value="Section"/>
 			<item value="Attribuer"/>
 			<item value="Code"/>
-			<item value="Genre"/>
-			<item value="TypeUtilisateur"/>
-			<item value="Connexion"/>
-			<item value="Droit"/>
-			<item value="System.setProperty(&quot;java.security.policy&quot;, &quot;client.policy&quot;)"/>
 		</list>
 		<list key="replacehistory">
+			<item value="id_code"/>
+			<item value="getIdCode"/>
+			<item value="id_utilisateur"/>
+			<item value="getIdUtilisateur"/>
 			<item value="Historique"/>
 			<item value="Autoriser"/>
 			<item value="Attribuer"/>
 			<item value="Code"/>
-			<item value="Salle"/>
-			<item value="Droit"/>
-			<item value="Section"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

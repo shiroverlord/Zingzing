@@ -69,7 +69,7 @@ public class Utilisateur implements Serializable {
 		this.prenom = prenom;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_Droit", nullable = false)
 	public Droit getDroit() {
 		return droit;
@@ -92,7 +92,7 @@ public class Utilisateur implements Serializable {
 	@Transient
 	@Override
 	public String toString() {
-		return "User:{ id:"+id+", prenom: \'"+prenom+"\' , nom: \'"+nom+"\', droit: \'"+droit.toString()+"}";
+		return "User:{ id:"+id+", prenom: \'"+prenom+"\' , nom: \'"+nom+"\', droit: \'"+droit+"\', section: \'"+section+"}";
 	}
 
 	@Override

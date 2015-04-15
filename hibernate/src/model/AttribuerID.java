@@ -2,60 +2,66 @@ package model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 @Embeddable
 public class AttribuerID implements Serializable {
 	private static final long serialVersionUID = -2381710710838826641L;
 	
-	private Long id_utilisateur;
-	private Long id_code;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="id_utilisateur", nullable=false)
+	private Utilisateur linkedUtilisateur;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="id_code", nullable=false)
+	private Code linkedCode;
 	
 	public AttribuerID(){}
 	
-	public AttribuerID(Long id_utilisateur, Long id_code) {
-		this.id_utilisateur = id_utilisateur;
-		this.id_code = id_code;
+	public AttribuerID(Utilisateur utilisateur, Code code) {
+		this.linkedUtilisateur = utilisateur;
+		this.linkedCode = code;
 	}
 
-	@Column(name="id_utilisateur", nullable=false)
-	public Long getIdUtilisateur() {
-		return id_utilisateur;
+	public Utilisateur getUtilisateur() {
+		return linkedUtilisateur;
 	}
 
-	public void setIdUtilisateur(Long id_utilisateur) {
-		this.id_utilisateur = id_utilisateur;
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.linkedUtilisateur = utilisateur;
 	}
 	
-	@Column(name="id_code", nullable=false)
-	public Long getIdCode() {
-		return id_code;
+	public Code getCode() {
+		return linkedCode;
 	}
 	
-	public void setIdCode(Long id_code) {
-		this.id_code = id_code;
+	public void setCode(Code code) {
+		this.linkedCode = code;
 	}
 	
 	@Transient
 	@Override
 	public String toString() {
-		return "AttribuerID:{ idUtilisateur:"+id_utilisateur+"\', idCode: \'"+id_code+"\'}";
+		return "AttribuerID:{ linkedUtilisateur:"+linkedUtilisateur+"\', linkedCode: \'"+linkedCode+"\'}";
 	}
 
-	@Transient
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id_code == null) ? 0 : id_code.hashCode());
 		result = prime * result
-				+ ((id_utilisateur == null) ? 0 : id_utilisateur.hashCode());
+				+ ((linkedCode == null) ? 0 : linkedCode.hashCode());
+		result = prime
+				* result
+				+ ((linkedUtilisateur == null) ? 0 : linkedUtilisateur
+						.hashCode());
 		return result;
 	}
 
-	@Transient
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -65,15 +71,15 @@ public class AttribuerID implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		AttribuerID other = (AttribuerID) obj;
-		if (id_code == null) {
-			if (other.id_code != null)
+		if (linkedCode == null) {
+			if (other.linkedCode != null)
 				return false;
-		} else if (!id_code.equals(other.id_code))
+		} else if (!linkedCode.equals(other.linkedCode))
 			return false;
-		if (id_utilisateur == null) {
-			if (other.id_utilisateur != null)
+		if (linkedUtilisateur == null) {
+			if (other.linkedUtilisateur != null)
 				return false;
-		} else if (!id_utilisateur.equals(other.id_utilisateur))
+		} else if (!linkedUtilisateur.equals(other.linkedUtilisateur))
 			return false;
 		return true;
 	}

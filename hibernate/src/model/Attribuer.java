@@ -3,8 +3,6 @@ package model;
 import java.io.Serializable;
 import java.util.Calendar;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -18,7 +16,9 @@ import tools.Tools;
 public class Attribuer implements Serializable {
 	private static final long serialVersionUID = -2381710710838826641L;
 	
+	@EmbeddedId
 	private AttribuerID attribuerId;
+	
 	private Calendar date_debut = null;
 	private Calendar date_fin = null;
 	
@@ -43,10 +43,6 @@ public class Attribuer implements Serializable {
 		this.date_fin = date_fin;
 	}
 	
-	@EmbeddedId
-    @AttributeOverrides( {
-    @AttributeOverride(name="id_utilisateur", column=@Column(name="id_utilisateur", nullable=false) ), 
-    @AttributeOverride(name="id_code", column=@Column(name="id_code", nullable=false) ) } )
 	public AttribuerID getId() {
 		return attribuerId;
 	}

@@ -39,7 +39,7 @@ public class Code implements Serializable {
 		this.id = id;
 	}
 	
-	@Column(name="value")
+	@Column(name="value", length=10)
 	public String getValue() {
 		return value;
 	}
