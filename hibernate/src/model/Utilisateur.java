@@ -94,4 +94,53 @@ public class Utilisateur implements Serializable {
 	public String toString() {
 		return "User:{ id:"+id+", prenom: \'"+prenom+"\' , nom: \'"+nom+"\', droit: \'"+droit.toString()+"}";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((droit == null) ? 0 : droit.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
+		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
+		result = prime * result + ((section == null) ? 0 : section.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Utilisateur other = (Utilisateur) obj;
+		if (droit == null) {
+			if (other.droit != null)
+				return false;
+		} else if (!droit.equals(other.droit))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (nom == null) {
+			if (other.nom != null)
+				return false;
+		} else if (!nom.equals(other.nom))
+			return false;
+		if (prenom == null) {
+			if (other.prenom != null)
+				return false;
+		} else if (!prenom.equals(other.prenom))
+			return false;
+		if (section == null) {
+			if (other.section != null)
+				return false;
+		} else if (!section.equals(other.section))
+			return false;
+		return true;
+	}
 }

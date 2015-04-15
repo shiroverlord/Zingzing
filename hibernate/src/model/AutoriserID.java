@@ -4,15 +4,14 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Id;
 import javax.persistence.Transient;
 
 @Embeddable
 public class AutoriserID implements Serializable {
 	private static final long serialVersionUID = -2381710710838826641L;
 	
-	protected Long id_droit;
-	protected Long id_salle;
+	protected Long id_droit = null;
+	protected Long id_salle = null;
 	
 	public AutoriserID(){}
 	
@@ -21,7 +20,6 @@ public class AutoriserID implements Serializable {
 		this.id_salle = id_salle;
 	}
 
-	@Id
 	@Column(name="id_droit", nullable=false)
 	public Long getIdDroit() {
 		return id_droit;
@@ -31,7 +29,6 @@ public class AutoriserID implements Serializable {
 		this.id_droit = id_droit;
 	}
 	
-	@Id
 	@Column(name="id_salle", nullable=false)
 	public Long getIdSalle() {
 		return id_salle;
@@ -45,5 +42,38 @@ public class AutoriserID implements Serializable {
 	@Override
 	public String toString() {
 		return "AutoriserID:{ idDroit:"+id_droit+"\', idSalle: \'"+id_salle+"\'}";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((id_droit == null) ? 0 : id_droit.hashCode());
+		result = prime * result
+				+ ((id_salle == null) ? 0 : id_salle.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AutoriserID other = (AutoriserID) obj;
+		if (id_droit == null) {
+			if (other.id_droit != null)
+				return false;
+		} else if (!id_droit.equals(other.id_droit))
+			return false;
+		if (id_salle == null) {
+			if (other.id_salle != null)
+				return false;
+		} else if (!id_salle.equals(other.id_salle))
+			return false;
+		return true;
 	}
 }

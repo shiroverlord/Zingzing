@@ -98,4 +98,54 @@ public class Historique implements Serializable {
 	public String toString() {
 		return "User:{ id:"+id+", date: \'"+Tools.formatDateToDisplay(date)+", utilisateur: \'"+utilisateur.toString()+"\' , code: \'"+code.toString()+"\', salle: \'"+salle.toString()+"}";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((salle == null) ? 0 : salle.hashCode());
+		result = prime * result
+				+ ((utilisateur == null) ? 0 : utilisateur.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Historique other = (Historique) obj;
+		if (code == null) {
+			if (other.code != null)
+				return false;
+		} else if (!code.equals(other.code))
+			return false;
+		if (date == null) {
+			if (other.date != null)
+				return false;
+		} else if (!date.equals(other.date))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (salle == null) {
+			if (other.salle != null)
+				return false;
+		} else if (!salle.equals(other.salle))
+			return false;
+		if (utilisateur == null) {
+			if (other.utilisateur != null)
+				return false;
+		} else if (!utilisateur.equals(other.utilisateur))
+			return false;
+		return true;
+	}
 }
