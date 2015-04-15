@@ -10,8 +10,10 @@ import javax.persistence.Transient;
 public class AttribuerID implements Serializable {
 	private static final long serialVersionUID = -2381710710838826641L;
 	
-	private Long id_utilisateur;
-	private Long id_code;
+	protected Long id_utilisateur;
+	protected Long id_code;
+	
+	private Integer hashCodeValue = null;
 	
 	public AttribuerID(){}
 	
@@ -47,12 +49,15 @@ public class AttribuerID implements Serializable {
 	@Transient
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id_code == null) ? 0 : id_code.hashCode());
-		result = prime * result
-				+ ((id_utilisateur == null) ? 0 : id_utilisateur.hashCode());
-		return result;
+		if(hashCodeValue == null) {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((id_code == null) ? 0 : id_code.hashCode());
+			result = prime * result + ((id_utilisateur == null) ? 0 : id_utilisateur.hashCode());
+			return result;
+		} else {
+			return hashCodeValue.intValue();
+		}
 	}
 
 	@Transient

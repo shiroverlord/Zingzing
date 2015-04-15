@@ -10,8 +10,8 @@ import javax.persistence.Transient;
 public class AutoriserID implements Serializable {
 	private static final long serialVersionUID = -2381710710838826641L;
 	
-	private Long id_droit = null;
-	private Long id_salle = null;
+	protected Long id_droit = null;
+	protected Long id_salle = null;
 	
 	public AutoriserID(){}
 	
