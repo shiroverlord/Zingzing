@@ -21,8 +21,10 @@ public class Utilisateur implements Serializable {
 	private Long id;
 	private String nom = null;
 	private String prenom = null;
+	private String email = null;
 	private Droit droit = null;
 	private Section section = null;
+	private Connexion connexion = null;
 	
 	public Utilisateur(){}
 	
@@ -69,6 +71,15 @@ public class Utilisateur implements Serializable {
 		this.prenom = prenom;
 	}
 
+	@Column(name="email")
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_Droit", nullable = false)
 	public Droit getDroit() {
@@ -89,6 +100,16 @@ public class Utilisateur implements Serializable {
 		this.section = section;
 	}
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_connexion", nullable = false)
+	public Connexion getConnexion() {
+		return connexion;
+	}
+
+	public void setConnexion(Connexion connexion) {
+		this.connexion = connexion;
+	}
+
 	@Transient
 	@Override
 	public String toString() {

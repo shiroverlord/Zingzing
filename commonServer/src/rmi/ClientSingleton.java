@@ -13,6 +13,7 @@ import java.util.TimerTask;
 import model.Attribuer;
 import model.Autoriser;
 import model.Code;
+import model.Connexion;
 import model.Droit;
 import model.Historique;
 import model.Salle;
@@ -472,6 +473,48 @@ public class ClientSingleton {
 		}
 		catch (Exception e) {
 			System.out.println("Serveur Data non atteignable - iRMISingleton.getHistoriqueById(Long id): "+e);
+			isConnected = false;
+		}
+		return result;
+	}
+	
+	public List<Connexion> getAllConnexions() {
+		List<Connexion> result = null;
+		try {
+			result = iRMISingleton.getAllConnexions();
+		} 
+		catch(NoSuchObjectException e) {
+			try {
+				connect();
+				result = iRMISingleton.getAllConnexions();
+			} catch (Exception e1) {
+				System.out.println("Serveur Data non atteignable : "+e1);
+				isConnected = false;
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Serveur Data non atteignable - iRMISingleton.getAllConnexions(): "+e);
+			isConnected = false;
+		}
+		return result;
+	}
+	
+	public Connexion getConnexionById(Long id) {
+		Connexion result = null;
+		try {
+			result = iRMISingleton.getConnexionById(id);
+		} 
+		catch(NoSuchObjectException e) {
+			try {
+				connect();
+				result = iRMISingleton.getConnexionById(id);
+			} catch (Exception e1) {
+				System.out.println("Serveur Data non atteignable : "+e1);
+				isConnected = false;
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Serveur Data non atteignable - iRMISingleton.getConnexionById(Long id): "+e);
 			isConnected = false;
 		}
 		return result;

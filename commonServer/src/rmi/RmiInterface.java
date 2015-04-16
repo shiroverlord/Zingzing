@@ -7,6 +7,7 @@ import java.util.List;
 import model.Attribuer;
 import model.Autoriser;
 import model.Code;
+import model.Connexion;
 import model.Droit;
 import model.Historique;
 import model.Salle;
@@ -62,4 +63,9 @@ public interface RmiInterface extends Remote {
 	public Historique getHistoriqueById(Long id) throws RemoteException;
 	public boolean insertHistorique(Historique historique) throws RemoteException;
 	public boolean updateHistorique(Historique historique) throws RemoteException;
+	
+	public List<Connexion> getAllConnexions() throws RemoteException;
+	public Connexion getConnexionById(Long id) throws RemoteException;
+	public boolean insertConnexion(Connexion connexion) throws RemoteException;
+	public boolean updateConnexion(Connexion connexion) throws RemoteException;
 }

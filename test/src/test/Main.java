@@ -10,6 +10,10 @@ public class Main {
 		System.setProperty("java.security.policy", "client.policy");
 		ClientSingleton clientS = ClientSingleton.getInstance();
 		if(clientS != null) {
+			System.out.println("Test Connexion = " + clientS.getAllConnexions());
+			
+			System.out.println("Test Connexion avec ID 1 = " + clientS.getConnexionById(1l));
+			
 			System.out.println("Test Section = " + clientS.getAllSections());
 			
 			System.out.println("Test Salle = " + clientS.getAllSalles());

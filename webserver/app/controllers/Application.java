@@ -39,7 +39,7 @@ public class Application extends Controller {
 		return promiseOfResult;
 	}
 	
-	public static Promise<Result> getBookById(Integer bookId) {
+	/*public static Promise<Result> getBookById(Integer bookId) {
 		Promise<String> promise = Promise.promise(() -> 
 		{
 			JSONObject jo = new JSONObject();
@@ -92,5 +92,5 @@ public class Application extends Controller {
 			}
 		});
 		return promiseOfResult;
-	}
+	}*/
 }

@@ -85,6 +85,7 @@ public class UtilisateurDAO {
 					"SELECT u FROM Utilisateur as u " +
 					"LEFT JOIN FETCH u.section " +
 					"LEFT JOIN FETCH u.droit " +
+					"LEFT JOIN FETCH u.connexion " +
 					"WHERE u.id = :id");
 			q.setParameter("id", id);
 			u = (Utilisateur) q.uniqueResult();

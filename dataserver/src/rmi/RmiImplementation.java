@@ -8,6 +8,7 @@ import java.util.List;
 import model.Attribuer;
 import model.Autoriser;
 import model.Code;
+import model.Connexion;
 import model.Droit;
 import model.Historique;
 import model.Salle;
@@ -16,6 +17,7 @@ import model.Utilisateur;
 import dao.AttribuerDAO;
 import dao.AutoriserDAO;
 import dao.CodeDAO;
+import dao.ConnexionDAO;
 import dao.DroitDAO;
 import dao.HistoriqueDAO;
 import dao.SalleDAO;
@@ -207,5 +209,25 @@ public class RmiImplementation extends UnicastRemoteObject implements RmiInterfa
 	@Override
 	public Utilisateur getUserByIdFull(Long id) throws RemoteException {
 		return UtilisateurDAO.findByIdFull(id);
+	}
+
+	@Override
+	public List<Connexion> getAllConnexions() throws RemoteException {
+		return ConnexionDAO.getAllConnexions();
+	}
+
+	@Override
+	public Connexion getConnexionById(Long id) throws RemoteException {
+		return ConnexionDAO.findById(id);
+	}
+
+	@Override
+	public boolean insertConnexion(Connexion connexion) throws RemoteException {
+		return ConnexionDAO.insert(connexion);
+	}
+
+	@Override
+	public boolean updateConnexion(Connexion connexion) throws RemoteException {
+		return ConnexionDAO.update(connexion);
 	}
 }
