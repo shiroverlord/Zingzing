@@ -30,6 +30,27 @@ public class CodeDAO {
 		return c;
 	}
 	
+	public static Code findByValue(String value) {
+		Code c = null;
+		Transaction tx = null;
+		boolean isActive = BDDUtils.getTransactionStatus();
+		try {
+			tx = BDDUtils.beginTransaction(isActive);
+			Query q = null;
+			q = BDDUtils.getCurrentSession().createQuery(
+					"SELECT c FROM Code c " +
+					"WHERE c.value = :value");
+			q.setParameter("value", value);
+			c = (Code) q.uniqueResult();
+			BDDUtils.commit(isActive, tx);
+		}
+		catch(Exception ex) {
+			System.out.println("Hibernate failure : "+ ex.getMessage());
+			BDDUtils.rollback(isActive, tx);
+		}
+		return c;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public static List<Code> getAllCodes() {
 		List<Code> lc = null;

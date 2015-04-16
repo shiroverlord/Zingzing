@@ -1,0 +1,127 @@
+package dao;
+
+import java.util.List;
+
+import model.Historique;
+
+import org.hibernate.Query;
+import org.hibernate.Transaction;
+
+public class HistoriqueDAO {
+
+	public static Historique findById(Long id) {
+		Historique s = null;
+		Transaction tx = null;
+		boolean isActive = BDDUtils.getTransactionStatus();
+		try {
+			tx = BDDUtils.beginTransaction(isActive);
+			Query q = null;
+			q = BDDUtils.getCurrentSession().createQuery(
+					"SELECT s FROM Historique s " +
+					"WHERE s.id = :id");
+			q.setParameter("id", id);
+			s = (Historique) q.uniqueResult();
+			BDDUtils.commit(isActive, tx);
+		}
+		catch(Exception ex) {
+			System.out.println("Hibernate failure : "+ ex.getMessage());
+			BDDUtils.rollback(isActive, tx);
+		}
+		return s;
+	}
+	
+	public static Historique findByIdFull(Long id) {
+		Historique h = null;
+		Transaction tx = null;
+		boolean isActive = BDDUtils.getTransactionStatus();
+		try {
+			tx = BDDUtils.beginTransaction(isActive);
+			Query q = null;
+			q = BDDUtils.getCurrentSession().createQuery(
+					"SELECT h FROM Historique h " +
+					"LEFT JOIN FETCH h.utilisateur " +
+					"LEFT JOIN FETCH h.code " +
+					"LEFT JOIN FETCH h.salle " +
+					"WHERE h.id = :id");
+			q.setParameter("id", id);
+			h = (Historique) q.uniqueResult();
+			BDDUtils.commit(isActive, tx);
+		}
+		catch(Exception ex) {
+			System.out.println("Hibernate failure : "+ ex.getMessage());
+			BDDUtils.rollback(isActive, tx);
+		}
+		return h;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static List<Historique> getAllHistoriques() {
+		List<Historique> ls = null;
+		Transaction tx = null;
+		boolean isActive = BDDUtils.getTransactionStatus();
+		try {
+			tx = BDDUtils.beginTransaction(isActive);
+			Query q = null;
+			q = BDDUtils.getCurrentSession().createQuery(
+					"SELECT h FROM Historique h " +
+					"LEFT JOIN FETCH h.utilisateur " +
+					"LEFT JOIN FETCH h.code " +
+					"LEFT JOIN FETCH h.salle");
+			ls = (List<Historique>) q.list();
+			BDDUtils.commit(isActive, tx);
+		}
+		catch(Exception ex) {
+			System.out.println("Hibernate failure : "+ ex.getMessage());
+			BDDUtils.rollback(isActive, tx);
+		}
+		return ls;
+	}
+	
+	public static boolean insert(Historique s) {
+		Transaction tx = null;
+		boolean isActive = BDDUtils.getTransactionStatus();
+		try {
+			tx = BDDUtils.beginTransaction(isActive);
+			BDDUtils.getCurrentSession().save(s);
+			BDDUtils.commit(isActive, tx);
+		}
+		catch(Exception ex) {
+			System.out.println("Hibernate failure : "+ ex.getMessage());
+			BDDUtils.rollback(isActive, tx);
+			return false;
+		}
+		return true;
+	}
+	
+	public static boolean update(Historique s) {
+		Transaction tx = null;
+		boolean isActive = BDDUtils.getTransactionStatus();
+		try {
+			tx = BDDUtils.beginTransaction(isActive);
+			BDDUtils.getCurrentSession().update(s);
+			BDDUtils.commit(isActive, tx);
+		}
+		catch(Exception ex) {
+			System.out.println("Hibernate failure : "+ ex.getMessage());
+			BDDUtils.rollback(isActive, tx);
+			return false;
+		}
+		return true;
+	}
+	
+	public static boolean delete(Historique s) {
+		Transaction tx = null;
+		boolean isActive = BDDUtils.getTransactionStatus();
+		try {
+			tx = BDDUtils.beginTransaction(isActive);
+			BDDUtils.getCurrentSession().delete(s);
+			BDDUtils.commit(isActive, tx);
+		}
+		catch(Exception ex) {
+			System.out.println("Hibernate failure : "+ ex.getMessage());
+			BDDUtils.rollback(isActive, tx);
+			return false;
+		}
+		return true;
+	}
+}

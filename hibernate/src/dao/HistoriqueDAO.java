@@ -30,6 +30,30 @@ public class HistoriqueDAO {
 		return s;
 	}
 	
+	public static Historique findByIdFull(Long id) {
+		Historique h = null;
+		Transaction tx = null;
+		boolean isActive = BDDUtils.getTransactionStatus();
+		try {
+			tx = BDDUtils.beginTransaction(isActive);
+			Query q = null;
+			q = BDDUtils.getCurrentSession().createQuery(
+					"SELECT h FROM Historique h " +
+					"LEFT JOIN FETCH h.utilisateur " +
+					"LEFT JOIN FETCH h.code " +
+					"LEFT JOIN FETCH h.salle " +
+					"WHERE h.id = :id");
+			q.setParameter("id", id);
+			h = (Historique) q.uniqueResult();
+			BDDUtils.commit(isActive, tx);
+		}
+		catch(Exception ex) {
+			System.out.println("Hibernate failure : "+ ex.getMessage());
+			BDDUtils.rollback(isActive, tx);
+		}
+		return h;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public static List<Historique> getAllHistoriques() {
 		List<Historique> ls = null;
@@ -38,7 +62,30 @@ public class HistoriqueDAO {
 		try {
 			tx = BDDUtils.beginTransaction(isActive);
 			Query q = null;
-			q = BDDUtils.getCurrentSession().createQuery("SELECT s FROM Historique s");
+			q = BDDUtils.getCurrentSession().createQuery("SELECT h FROM Historique h");
+			ls = (List<Historique>) q.list();
+			BDDUtils.commit(isActive, tx);
+		}
+		catch(Exception ex) {
+			System.out.println("Hibernate failure : "+ ex.getMessage());
+			BDDUtils.rollback(isActive, tx);
+		}
+		return ls;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static List<Historique> getAllHistoriquesFull() {
+		List<Historique> ls = null;
+		Transaction tx = null;
+		boolean isActive = BDDUtils.getTransactionStatus();
+		try {
+			tx = BDDUtils.beginTransaction(isActive);
+			Query q = null;
+			q = BDDUtils.getCurrentSession().createQuery(
+					"SELECT h FROM Historique h " +
+					"LEFT JOIN FETCH h.utilisateur " +
+					"LEFT JOIN FETCH h.code " +
+					"LEFT JOIN FETCH h.salle");
 			ls = (List<Historique>) q.list();
 			BDDUtils.commit(isActive, tx);
 		}

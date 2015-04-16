@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<item value="false" key="ProjectSelectionDialog.show_all"/>
+	<item value="filter_imports;" key="filters_last_used"/>
 	<item value="1" key="org.eclipse.jdt.ui.last.selected.jre.kind2"/>
 	<item value="640,680" key="UserLibraryLoadSaveDialog.size"/>
 	<section name="org.eclipse.ltk.ui.refactoring.settings">
@@ -30,7 +31,17 @@
 		<item value="1" key="rootMode"/>
 		<item value="false" key="linkWithEditor"/>
 	</section>
+	<section name="ExtractMethodWizard">
+		<item value="false" key="GenerateJavadoc"/>
+		<item value="2" key="AccessModifier"/>
+		<item value="false" key="ThrowRuntimeExceptions"/>
+	</section>
+	<section name="NewClassWizardPage">
+		<item value="false" key="create_constructor"/>
+		<item value="true" key="create_unimplemented"/>
+	</section>
 	<section name="OptionalMessageDialog.hide.">
+		<item value="true" key="org.eclipse.jdt.ui.typecomment.deprecated"/>
 	</section>
 	<section name="DialogBounds_GenerateHashCodeEqualsDialog">
 		<item value="678" key="DIALOG_WIDTH"/>
@@ -89,7 +100,7 @@
 		<item value="8" key="index"/>
 	</section>
 	<section name="BuildPathsPropertyPage">
-		<item value="1" key="pageIndex"/>
+		<item value="2" key="pageIndex"/>
 	</section>
 	<section name="quick_assist_proposal_size">
 	</section>
@@ -120,8 +131,8 @@
 		<item value="false" key="JarManifestWizardPage.SAVE_MANIFEST"/>
 		<item value="true" key="JarPackageWizardPage.EXPORT_OUTPUT_FOLDER"/>
 		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
-			<item value="webserver\lib\commonServer.jar"/>
 			<item value="webserver\lib\hibernate.jar"/>
+			<item value="webserver\lib\commonServer.jar"/>
 			<item value="webserver/lib/commonServer.jar"/>
 		</list>
 	</section>

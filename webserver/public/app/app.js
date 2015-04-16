@@ -1,4 +1,4 @@
-angular.module('libraryApp', [
+angular.module('zingzingApp', [
 		//'ngAnimate',
         'ngResource',
         'ngSanitize',

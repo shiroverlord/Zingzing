@@ -4,5 +4,8 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/commonServer"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/hibernate"/>
+	<classpathentry kind="lib" path="lib/javax.mail.jar"/>
+	<classpathentry kind="lib" path="lib/RXTXcomm.jar"/>
+	<classpathentry kind="lib" path="/hibernate/lib/hibernate-core-4.3.8.Final.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

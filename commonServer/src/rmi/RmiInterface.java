@@ -34,6 +34,7 @@ public interface RmiInterface extends Remote {
 	
 	public List<Code> getAllCodes() throws RemoteException;
 	public Code getCodeById(Long id) throws RemoteException;
+	public Code getCodeByValue(String value) throws RemoteException;
 	public boolean insertCode(Code code) throws RemoteException;
 	public boolean updateCode(Code code) throws RemoteException;
 	
@@ -60,7 +61,9 @@ public interface RmiInterface extends Remote {
 	public boolean updateAutoriser(Autoriser autoriser) throws RemoteException;
 	
 	public List<Historique> getAllHistoriques() throws RemoteException;
+	public List<Historique> getAllHistoriquesFull() throws RemoteException;
 	public Historique getHistoriqueById(Long id) throws RemoteException;
+	public Historique getHistoriqueByIdFull(Long id) throws RemoteException;
 	public boolean insertHistorique(Historique historique) throws RemoteException;
 	public boolean updateHistorique(Historique historique) throws RemoteException;
 	

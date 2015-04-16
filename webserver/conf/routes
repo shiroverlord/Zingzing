@@ -7,6 +7,9 @@ GET		/							  		controllers.Assets.at(path="/public/app", file="index.html")
 
 # API
 GET		/api/test/string					controllers.Application.getStringTest()
+GET		/api/historiques					controllers.Application.getAllHistoriques()
+
+#POST	/api/disclameLost/
 #GET		/api/users							controllers.Application.getAllUsers()
 #Exemple avec arguments
 #GET		/api/book/:bookId					controllers.Application.getBookById(bookId : Integer)

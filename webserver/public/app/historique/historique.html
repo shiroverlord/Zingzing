@@ -1,0 +1,17 @@
+<h1>Historique d'accès aux salles</h1>
+<table class="table table-striped table-bordered">
+	<thead>
+		<tr>
+			<td>Salle</td>
+			<td>Personne</td>
+			<td>Date</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="histo in HistoriqueCtrl.resultList">
+			<td>{{histo.salle}}</td>
+			<td>{{histo.personne}}</td>
+			<td>{{histo.date}}</td>
+		</tr>
+	</tbody>
+</table>

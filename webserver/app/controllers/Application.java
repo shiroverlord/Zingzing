@@ -2,7 +2,7 @@ package controllers;
 
 import java.util.List;
 
-import model.Utilisateur;
+import model.Historique;
 
 //import org.json.JSONArray;
 import org.json.JSONObject;
@@ -36,6 +36,26 @@ public class Application extends Controller {
 		{
 			return ok(data);
 		});*/
+		return promiseOfResult;
+	}
+	
+	public static Promise<Result> getAllHistoriques() {
+		Promise<String> promise = Promise.promise(() -> 
+		{
+			List<Historique> lh = clientRMI.getAllHistoriquesFull();
+			if(lh != null && !lh.isEmpty()){
+				return ConstructJSONObjects.getJSONArrayforListHistoriques(lh).toString();
+			} else {
+				return null;
+			}
+		});
+		Promise<Result> promiseOfResult = promise.map(result -> {
+			if(result != null) {
+				return ok(result);
+			} else {
+				return notFound();
+			}
+		});
 		return promiseOfResult;
 	}
 	

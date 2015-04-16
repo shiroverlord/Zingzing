@@ -311,6 +311,27 @@ public class ClientSingleton {
 		return result;
 	}
 	
+	public Code getCodeByValue(String value) {
+		Code result = null;
+		try {
+			result = iRMISingleton.getCodeByValue(value);
+		} 
+		catch(NoSuchObjectException e) {
+			try {
+				connect();
+				result = iRMISingleton.getCodeByValue(value);
+			} catch (Exception e1) {
+				System.out.println("Serveur Data non atteignable : "+e1);
+				isConnected = false;
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Serveur Data non atteignable - iRMISingleton.getCodeByValue(String value): "+e);
+			isConnected = false;
+		}
+		return result;
+	}
+	
 	public List<Attribuer> getAllAttribuers() {
 		List<Attribuer> result = null;
 		try {
@@ -436,6 +457,7 @@ public class ClientSingleton {
 		}
 		return result;
 	}
+	
 	public List<Historique> getAllHistoriques() {
 		List<Historique> result = null;
 		try {
@@ -473,6 +495,48 @@ public class ClientSingleton {
 		}
 		catch (Exception e) {
 			System.out.println("Serveur Data non atteignable - iRMISingleton.getHistoriqueById(Long id): "+e);
+			isConnected = false;
+		}
+		return result;
+	}
+	
+	public List<Historique> getAllHistoriquesFull() {
+		List<Historique> result = null;
+		try {
+			result = iRMISingleton.getAllHistoriquesFull();
+		} 
+		catch(NoSuchObjectException e) {
+			try {
+				connect();
+				result = iRMISingleton.getAllHistoriquesFull();
+			} catch (Exception e1) {
+				System.out.println("Serveur Data non atteignable : "+e1);
+				isConnected = false;
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Serveur Data non atteignable - iRMISingleton.getAllHistoriquesFull(): "+e);
+			isConnected = false;
+		}
+		return result;
+	}
+	
+	public Historique getHistoriqueByIdFull(Long id) {
+		Historique result = null;
+		try {
+			result = iRMISingleton.getHistoriqueByIdFull(id);
+		} 
+		catch(NoSuchObjectException e) {
+			try {
+				connect();
+				result = iRMISingleton.getHistoriqueByIdFull(id);
+			} catch (Exception e1) {
+				System.out.println("Serveur Data non atteignable : "+e1);
+				isConnected = false;
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Serveur Data non atteignable - iRMISingleton.getHistoriqueByIdFull(Long id): "+e);
 			isConnected = false;
 		}
 		return result;

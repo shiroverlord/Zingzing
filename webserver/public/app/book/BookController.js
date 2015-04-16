@@ -12,5 +12,5 @@ function BookCtrl($resource, $stateParams) {
 	this.resultBook = bookById.get({bookId: $stateParams.bookId});
 }
 angular
-    .module('libraryApp')
+    .module('zingzingApp')
 	.controller('BookCtrl', BookCtrl);

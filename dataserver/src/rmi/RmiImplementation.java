@@ -195,6 +195,16 @@ public class RmiImplementation extends UnicastRemoteObject implements RmiInterfa
 	public Historique getHistoriqueById(Long id) throws RemoteException {
 		return HistoriqueDAO.findById(id);
 	}
+	
+	@Override
+	public List<Historique> getAllHistoriquesFull() throws RemoteException {
+		return HistoriqueDAO.getAllHistoriquesFull();
+	}
+
+	@Override
+	public Historique getHistoriqueByIdFull(Long id) throws RemoteException {
+		return HistoriqueDAO.findByIdFull(id);
+	}
 
 	@Override
 	public boolean insertHistorique(Historique historique) throws RemoteException {
@@ -229,5 +239,10 @@ public class RmiImplementation extends UnicastRemoteObject implements RmiInterfa
 	@Override
 	public boolean updateConnexion(Connexion connexion) throws RemoteException {
 		return ConnexionDAO.update(connexion);
+	}
+
+	@Override
+	public Code getCodeByValue(String value) throws RemoteException {
+		return CodeDAO.findByValue(value);
 	}
 }

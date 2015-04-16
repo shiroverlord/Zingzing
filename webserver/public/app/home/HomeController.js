@@ -12,5 +12,5 @@ function HomeCtrl($resource) {
 	this.resultTestString = testString.get();
 }
 angular
-    .module('libraryApp')
+    .module('zingzingApp')
 	.controller('HomeCtrl', HomeCtrl);

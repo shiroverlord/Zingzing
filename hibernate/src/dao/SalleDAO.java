@@ -30,6 +30,27 @@ public class SalleDAO {
 		return s;
 	}
 	
+	public static Salle findByNumSalle(String num) {
+		Salle s = null;
+		Transaction tx = null;
+		boolean isActive = BDDUtils.getTransactionStatus();
+		try {
+			tx = BDDUtils.beginTransaction(isActive);
+			Query q = null;
+			q = BDDUtils.getCurrentSession().createQuery(
+					"SELECT s FROM Salle s " +
+					"WHERE UPPER(s.num) = :num");
+			q.setParameter("num", num);
+			s = (Salle) q.uniqueResult();
+			BDDUtils.commit(isActive, tx);
+		}
+		catch(Exception ex) {
+			System.out.println("Hibernate failure : "+ ex.getMessage());
+			BDDUtils.rollback(isActive, tx);
+		}
+		return s;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public static List<Salle> getAllSalles() {
 		List<Salle> ls = null;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr"  ng-app="libraryApp">
+<html lang="fr"  ng-app="zingzingApp">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,9 +13,9 @@
     <link rel="stylesheet" href="/bower_components/angular-loading-bar/build/loading-bar.min.css"/>
 </head>
 <body>
-	<!--<ncis-navbar-top></ncis-navbar-top>
+	<zingzing-navbar-top></zingzing-navbar-top>
 	
-	<div class="col-lg-3 pull-right">
+	<!--<div class="col-lg-3 pull-right">
 		<h3>Connection</h3>
 	<div class="input-group input-group-sm">
 		<span class="input-group-addon" id="sizing-addon3">Login</span>
@@ -28,7 +28,7 @@
 		Pas de compte ? <a href="#">inscription !</a>
 	</div>-->
 
-	<div ui-view="main" class="col-lg-9 starter-template"></div>
+	<div ui-view="main" class="starter-template"></div>
 
     <!--<div class="col-lg-3 pull-right"> 
 		<h2>Informations pratiques</h2>
@@ -69,13 +69,15 @@
 	
 	<!-- tmp views -->
 	<script src="/home/HomeController.js"></script>
-	<script src="/book/BookController.js"></script>
+	<script src="/historique/HistoriqueController.js"></script>
+	<script src="/pertecode/PertecodeController.js"></script>
+	<!--<script src="/book/BookController.js"></script>
 	<script src="/books/BooksController.js"></script>
 	<script src="/contacts/ContactsController.js"></script>
 	
-	<script src="/developpeur/DeveloppeurController.js"></script>
+	<script src="/developpeur/DeveloppeurController.js"></script>-->
 	
 	<!-- tmp directives -->
-	<script src="/directives/NcisNavbarTop.js"></script>
+	<script src="/directives/zingzingNavbarTop.js"></script>
 </body>
 </html>

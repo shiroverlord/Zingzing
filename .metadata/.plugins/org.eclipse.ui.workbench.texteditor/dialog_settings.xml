@@ -2,22 +2,23 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="id_code" key="selection"/>
+		<item value="search" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="search"/>
+			<item value="run"/>
+			<item value="ports"/>
+			<item value="portMap"/>
+			<item value="Code"/>
 			<item value="id_salle"/>
 			<item value="getIdSalle"/>
 			<item value="id_droit"/>
-			<item value="id_utilisateur"/>
-			<item value="getIdDroit"/>
-			<item value="Section"/>
-			<item value="Attribuer"/>
-			<item value="Code"/>
 		</list>
 		<list key="replacehistory">
+			<item value="Connexion"/>
 			<item value="id_code"/>
 			<item value="getIdCode"/>
 			<item value="id_utilisateur"/>
@@ -25,7 +26,6 @@
 			<item value="Historique"/>
 			<item value="Autoriser"/>
 			<item value="Attribuer"/>
-			<item value="Code"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

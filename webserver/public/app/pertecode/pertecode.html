@@ -1,0 +1,11 @@
+<h1>Déclarer une perte de code</h1>
+<form class="form-horizontal">
+  <fieldset>
+    <legend>Formulaire</legend>
+    <label>Email</label>
+    <input type="email" ng-model="user.email" placeholder="Tapez votre email" required>
+	<label>Mot de Passe</label>
+    <input type="password" ng-model="user.password" placeholder="Tapez votre mot de passe" required>
+    <button type="submit" class="btn" ng-click="PertecodeCtrl.askForMDP(user)">Valider</button>
+  </fieldset>
+</form>

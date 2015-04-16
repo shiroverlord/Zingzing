@@ -1,5 +1,5 @@
 angular
-    .module('libraryApp')
+    .module('zingzingApp')
     .config(function ($stateProvider, $urlRouterProvider) {
         ///////////
         /* VIEWS */
@@ -12,7 +12,7 @@ angular
         $stateProvider.state('home', {
             parent: 'main',
             url: '/home',
-            title: 'Home',
+            title: 'Accueil',
             reloadOnSearch: false,
             views: {
                 'main@': {
@@ -23,7 +23,35 @@ angular
             }
         });
 		
-		$stateProvider.state('books', {
+		$stateProvider.state('historique', {
+            parent: 'main',
+            url: '/historique',
+            title: 'Historique',
+            reloadOnSearch: false,
+            views: {
+                'main@': {
+                    templateUrl: '/historique/historique.html',
+                    controller: 'HistoriqueCtrl',
+                    controllerAs: 'HistoriqueCtrl'
+                }
+            }
+        });
+		
+		$stateProvider.state('pertecode', {
+            parent: 'main',
+            url: '/pertecode',
+            title: 'Perte du code',
+            reloadOnSearch: false,
+            views: {
+                'main@': {
+                    templateUrl: '/pertecode/pertecode.html',
+                    controller: 'PertecodeCtrl',
+                    controllerAs: 'PertecodeCtrl'
+                }
+            }
+        });
+		
+		/*$stateProvider.state('books', {
             parent: 'main',
             url: '/books',
             title: 'Books',
@@ -77,7 +105,7 @@ angular
                     controllerAs: 'DeveloppeurCtrl'
                 }
             }
-        });
+        });*/
 
         ///////////////
         /* OTHERWISE */

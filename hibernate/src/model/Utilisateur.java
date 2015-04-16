@@ -115,6 +115,11 @@ public class Utilisateur implements Serializable {
 	public String toString() {
 		return "User:{ id:"+id+", prenom: \'"+prenom+"\' , nom: \'"+nom+"\', droit: \'"+droit+"\', section: \'"+section+"}";
 	}
+	
+	@Transient
+	public String getFullName() {
+		return nom + " " + prenom;
+	}
 
 	@Override
 	public int hashCode() {

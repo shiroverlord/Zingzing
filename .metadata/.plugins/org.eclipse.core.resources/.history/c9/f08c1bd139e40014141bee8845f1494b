@@ -1,0 +1,32 @@
+package dataserver;
+
+import rmi.RmiServer;
+
+public class DataServerMain {
+
+	public static void main(String[] args) {
+		if (System.getSecurityManager() == null) {      
+			System.setSecurityManager(new SecurityManager());    
+		}
+		RmiServer.start();
+		
+		new SerialManager("COM3");
+		//Exemple de UPDATE en récupérant un Objet Connexion
+		/*Transaction tx = null;
+		boolean isActive = BDDUtils.getTransactionStatus();
+		try {
+			tx = BDDUtils.beginTransaction(isActive);
+			Connexion c = ConnexionDAO.findById(2l);
+			c.setPassword("pwdModif4");
+			ConnexionDAO.insertOrUpdate(c);
+			BDDUtils.commit(isActive, tx);
+		}
+		catch(Exception ex) {
+			System.out.println("Hibernate failure : "+ ex.getMessage());
+			BDDUtils.rollback(isActive, tx);
+		}*/
+		
+//		RmiServer.stop();
+	}
+
+}
