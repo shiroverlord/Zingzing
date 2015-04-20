@@ -1,0 +1,15 @@
+package controllers;
+
+import javax.net.ssl.SSLEngine;
+
+import play.server.SSLEngineProvider;
+
+public class CustomSSLEngineProvider implements SSLEngineProvider {
+
+	@Override
+	public SSLEngine createSSLEngine() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

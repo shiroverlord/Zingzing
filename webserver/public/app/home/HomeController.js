@@ -3,13 +3,13 @@ function HomeCtrl($resource) {
 	this.resultTestString = {};
 	this.resultTestRMIString = {};
 
-	var testString = $resource('/api/test/string',
+	/*var testString = $resource('/api/test/string',
         {},
         {
             'get': {method:'GET', isArray:false}
         }
     );
-	this.resultTestString = testString.get();
+	this.resultTestString = testString.get();*/
 }
 angular
     .module('zingzingApp')

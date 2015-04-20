@@ -1,0 +1,111 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package heavyApp;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JComboBox;
+import javax.swing.table.DefaultTableModel;
+
+import model.Salle;
+import model.Utilisateur;
+
+
+/**
+ *
+ * @author valga_000
+ */
+public class Link {
+    
+    public Link(){
+    
+    }
+    
+    public void getListUser(JComboBox jC){
+    	List<Utilisateur> lu = SourceIHM.client.getAllUsers();
+        jC.addItem(" -");
+        jC.addItem("Ajouter un Utilisateur");
+        for (Utilisateur utilisateur : lu) {
+        	jC.addItem(utilisateur.getId() + " - " + utilisateur.getFullName());
+		}
+    }
+    
+    public void getListSalle(DefaultTableModel dt){
+    	List<Salle> ls = SourceIHM.client.getAllSalles();
+        for (Salle salle : ls) {
+        	Object [] donnee = new Object[2];
+        	donnee[0] = salle.getLibelle();
+        	donnee[1] = salle.getNum();
+        	dt.addRow(donnee);
+		}
+    }
+    
+    public void setSalle(DefaultTableModel dt){
+    	List<Salle> listSallesToUpdate = new ArrayList<Salle>();
+    	List<Salle> listSallesToInsert = new ArrayList<Salle>();
+    	for(int i=0; dt.getRowCount()>i ; i++) {
+    		Salle s = SourceIHM.client.getSalleByNum((String) dt.getValueAt(i, 1));
+    		if(s != null) {
+    			listSallesToUpdate.add(new Salle(s.getId(), (String) dt.getValueAt(i, 0), (String) dt.getValueAt(i, 1)));
+    		} else {
+    			listSallesToInsert.add(new Salle((String) dt.getValueAt(i, 0), (String) dt.getValueAt(i, 1)));
+    		}
+    	}
+    	for (Salle salle : listSallesToUpdate) {
+    		SourceIHM.client.updateSalle(salle);
+		}
+    	for (Salle salle : listSallesToInsert) {
+    		SourceIHM.client.insertSalle(salle);
+		}
+    }
+    
+    public String[] getUserInfo(String user){
+    	String [] sortie = new String [4];//nom/prenom/email/mdp
+    	String[] userSplit = user.split("-");
+    	if(userSplit != null && userSplit.length >= 2) {
+    		try{
+    			Long userId = Long.parseLong(userSplit[0].trim());
+    			Utilisateur u = SourceIHM.client.getUserByIdFull(userId);
+        		sortie[0] = u.getNom();
+        		sortie[1] = u.getPrenom();
+        		sortie[2] = u.getEmail();
+        		sortie[3] = u.getConnexion().getValue();
+    		} catch(NumberFormatException e) {
+    			System.out.println("Erreur lors de la conversion de l'ID en Long");
+    		}
+    	}
+        System.out.println("GET USER INFO");
+        return sortie;
+    }
+    
+    public void setUser(String selectedUser, String newNom, String newPrenom, String email, String mdp ){
+    	boolean isUpdate = false;
+    	if(selectedUser!=null && newNom!=null && newPrenom!=null && email!=null) {
+    		String[] userSplit = selectedUser.split("-");
+        	if(userSplit != null && userSplit.length >= 2) {
+        		try{
+        			Long userId = Long.parseLong(userSplit[0].trim());
+        			Utilisateur u = SourceIHM.client.getUserByIdFull(userId);
+        			u.setNom(newNom);
+        			u.setPrenom(newPrenom);
+        			u.setEmail(email);
+        			u.getConnexion().setValue(mdp);
+        			isUpdate = SourceIHM.client.updateUser(u);
+        		} catch(NumberFormatException e) {
+        			System.out.println("Erreur lors de la conversion de l'ID en Long.");
+        		}if(isUpdate) {
+        			System.out.println("INSERT INTO");
+        		} else {
+        			System.out.println("Erreur lors de la mise à jour de l'utilisateur.");
+        		}
+        		
+        	}
+    	}
+    }
+    
+}

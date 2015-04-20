@@ -4,8 +4,11 @@ import java.util.List;
 
 import model.Historique;
 
+
 //import org.json.JSONArray;
 import org.json.JSONObject;
+
+import com.fasterxml.jackson.databind.JsonNode;
 
 import play.libs.F.Promise;
 import play.mvc.Controller;
@@ -52,6 +55,23 @@ public class Application extends Controller {
 		Promise<Result> promiseOfResult = promise.map(result -> {
 			if(result != null) {
 				return ok(result);
+			} else {
+				return notFound();
+			}
+		});
+		return promiseOfResult;
+	}
+	
+	public static Promise<Result> disclameLost(String email) {
+		Promise<Boolean> promise = Promise.promise(() -> 
+		{
+			JsonNode entryJson = request().body().asJson();
+			String password = entryJson.get("password").asText();
+			return clientRMI.disclameLost(email, password); 
+		});
+		Promise<Result> promiseOfResult = promise.map(result -> {
+			if(result){
+				return ok();
 			} else {
 				return notFound();
 			}

@@ -1,44 +1,47 @@
-function PertecodeCtrl($filter, $resource) {
-	this.self = this;
+function PertecodeCtrl($filter, $http) {
+	var self = this;
+	this.envoiePerteCode = false;
+	this.envoiePerteCodeSuccess = false;
+	this.envoiePerteCodeFailed = false;
 	
-	var askMDP = $resource('/api/disclameLost/:email/:password',
+	/*var askMDP = $resource('/api/disclameLost/:email/:password',
         {
 			email: '@email', password: 'password'
 		},
         {
             'save': {method:'POST'}
         }
-    );
+    );*/
 	
 	this.askForMDP = function(user) {
-		askMDP.save({email: user.email, password: user.password}, function(success){
-			console.log(success);
+		self.envoiePerteCode = true;
+		/*askMDP.save({email: user.email, password: user.password}, function(success){
+			self.envoiePerteCodeSuccess = true;
+			self.envoiePerteCodeFailed = false;
 		}, function(error){
-			console.log(error);
-		});
+			self.envoiePerteCodeSuccess = false;
+			self.envoiePerteCodeFailed = true;
+		});*/
+		
+		$http.post('/api/disclameLost/' + user.email, {password: user.password})
+            .success(function(data, status, headers, config) {
+				self.envoiePerteCodeSuccess = true;
+				self.envoiePerteCodeFailed = false;
+                /*self.isConnectedStatus = true;
+                ipCookie('nom', data.user.nom, {expires : 365});
+                ipCookie('id', data.user.id, {expires : 365});
+                ipCookie('role', data.user.role, {expires : 365});
+                ipCookie('token', data.user.token, {expires : 365});
+                ConfigurationService.extendConfiguration(data);
+                $rootScope.$broadcast('config.loaded');
+                success(data, status, headers, config);*/
+            })
+            .error(function(error){
+				self.envoiePerteCodeSuccess = false;
+				self.envoiePerteCodeFailed = true;
+			});
+		
 	};
-	/*this.resultUserList = [];
-
-	var users = $resource('/api/users',
-        {},
-        {
-            'get': {method:'GET', isArray:true}
-        }
-    );
-	var userById = $resource('/api/user/:userId',
-        {},
-        {
-            'get': {method:'GET', isArray:false}
-        }
-    );
-	this.resultUserList = users.get(function(result){
-		self.resultUserList = result;
-		angular.forEach(self.resultUserList, function(user){
-			var date = new Date(user.birthday);
-			user.birthday = $filter('date')(date, "dd/MM/yyyy 'à' h:mm");
-		});
-		var a = 2;
-	});*/
 }
 angular
     .module('zingzingApp')

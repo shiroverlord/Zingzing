@@ -98,6 +98,27 @@ public class UtilisateurDAO {
 		return u;
 	}
 	
+	public static Utilisateur findByEmail(String email) {
+		Utilisateur u = null;
+		Transaction tx = null;
+		boolean isActive = BDDUtils.getTransactionStatus();
+		try {
+			tx = BDDUtils.beginTransaction(isActive);
+			Query q = null;
+			q = BDDUtils.getCurrentSession().createQuery(
+					"SELECT u FROM Utilisateur as u " +
+					"WHERE UPPER(u.email) = :email");
+			q.setParameter("email", email);
+			u = (Utilisateur) q.uniqueResult();
+			BDDUtils.commit(isActive, tx);
+		}
+		catch(Exception ex) {
+			System.out.println("Hibernate failure : "+ ex.getMessage());
+			BDDUtils.rollback(isActive, tx);
+		}
+		return u;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public static List<Utilisateur> getAllUsers() {
 		List<Utilisateur> lu = null;

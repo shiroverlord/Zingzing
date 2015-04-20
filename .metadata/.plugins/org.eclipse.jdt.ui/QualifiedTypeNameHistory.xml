@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="model.Utilisateur"/>
 <fullyQualifiedTypeName name="javax.persistence.Embeddable"/>
 <fullyQualifiedTypeName name="javax.persistence.EmbeddedId"/>
 <fullyQualifiedTypeName name="dao.DroitDAO"/>
 <fullyQualifiedTypeName name="model.Section"/>
 <fullyQualifiedTypeName name="model.Droit"/>
-<fullyQualifiedTypeName name="model.Salle"/>
 <fullyQualifiedTypeName name="javax.persistence.AttributeOverrides"/>
 <fullyQualifiedTypeName name="javax.persistence.AttributeOverride"/>
 <fullyQualifiedTypeName name="model.AutoriserID"/>
 <fullyQualifiedTypeName name="javax.persistence.Id"/>
 <fullyQualifiedTypeName name="javax.persistence.IdClass"/>
-<fullyQualifiedTypeName name="dao.UtilisateurDAO"/>
-<fullyQualifiedTypeName name="dao.ConnexionDAO"/>
 <fullyQualifiedTypeName name="model.Connexion"/>
 <fullyQualifiedTypeName name="javax.comm.SerialPort"/>
 <fullyQualifiedTypeName name="javax.comm.CommPortIdentifier"/>
@@ -30,13 +26,31 @@
 <fullyQualifiedTypeName name="dataserver.SerialManager"/>
 <fullyQualifiedTypeName name="dao.CodeDAO"/>
 <fullyQualifiedTypeName name="model.Code"/>
-<fullyQualifiedTypeName name="dao.AttribuerDAO"/>
 <fullyQualifiedTypeName name="model.Attribuer"/>
-<fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="java.util.Calendar"/>
-<fullyQualifiedTypeName name="dao.SalleDAO"/>
-<fullyQualifiedTypeName name="dao.AutoriserDAO"/>
 <fullyQualifiedTypeName name="model.Autoriser"/>
 <fullyQualifiedTypeName name="dao.HistoriqueDAO"/>
 <fullyQualifiedTypeName name="model.Historique"/>
+<fullyQualifiedTypeName name="java.rmi.RemoteException"/>
+<fullyQualifiedTypeName name="dao.AutoriserDAO"/>
+<fullyQualifiedTypeName name="dao.AttribuerDAO"/>
+<fullyQualifiedTypeName name="java.util.Calendar"/>
+<fullyQualifiedTypeName name="play.server.ApplicationProvider"/>
+<fullyQualifiedTypeName name="javax.net.ssl.SSLContext"/>
+<fullyQualifiedTypeName name="java.security.NoSuchAlgorithmException"/>
+<fullyQualifiedTypeName name="com.fasterxml.jackson.databind.JsonNode"/>
+<fullyQualifiedTypeName name="rmi.ClientSingleton"/>
+<fullyQualifiedTypeName name="heavyApp.SourceIHM"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="model.Utilisateur"/>
+<fullyQualifiedTypeName name="java.lang.NumberFormatException"/>
+<fullyQualifiedTypeName name="dao.UtilisateurDAO"/>
+<fullyQualifiedTypeName name="dao.ConnexionDAO"/>
+<fullyQualifiedTypeName name="javax.swing.table.TableModel"/>
+<fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
+<fullyQualifiedTypeName name="java.awt.Component"/>
+<fullyQualifiedTypeName name="javax.swing.table.TableColumn"/>
+<fullyQualifiedTypeName name="javax.swing.JComboBox"/>
+<fullyQualifiedTypeName name="dao.SalleDAO"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="model.Salle"/>
 </qualifiedTypeNameHistroy>

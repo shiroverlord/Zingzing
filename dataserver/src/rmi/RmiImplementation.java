@@ -3,6 +3,7 @@ package rmi;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.Calendar;
 import java.util.List;
 
 import model.Attribuer;
@@ -14,8 +15,12 @@ import model.Historique;
 import model.Salle;
 import model.Section;
 import model.Utilisateur;
+
+import org.hibernate.Transaction;
+
 import dao.AttribuerDAO;
 import dao.AutoriserDAO;
+import dao.BDDUtils;
 import dao.CodeDAO;
 import dao.ConnexionDAO;
 import dao.DroitDAO;
@@ -48,7 +53,28 @@ public class RmiImplementation extends UnicastRemoteObject implements RmiInterfa
 
 	@Override
 	public boolean updateUser(Utilisateur user) throws RemoteException {
-		return UtilisateurDAO.update(user);
+		boolean result = false;
+		Transaction tx = null;
+		boolean isActive = BDDUtils.getTransactionStatus();
+		try {
+			tx = BDDUtils.beginTransaction(isActive);
+			Utilisateur oldUser = UtilisateurDAO.findById(user.getId());
+			oldUser.setNom(user.getNom());
+			oldUser.setPrenom(user.getPrenom());
+			oldUser.setEmail(user.getEmail());
+			oldUser.getConnexion().setValue(user.getConnexion().getValue());
+			oldUser.setDroit(DroitDAO.findById(user.getDroit().getId()));
+			oldUser.setSection(SectionDAO.findById(user.getSection().getId()));
+			UtilisateurDAO.update(oldUser);
+			BDDUtils.commit(isActive, tx);
+			result = true;
+		}
+		catch(Exception ex) {
+			System.out.println("Hibernate failure : "+ ex.getMessage());
+			BDDUtils.rollback(isActive, tx);
+			return false;
+		}
+		return result;
 	}
 
 	@Override
@@ -133,7 +159,25 @@ public class RmiImplementation extends UnicastRemoteObject implements RmiInterfa
 
 	@Override
 	public boolean updateSalle(Salle salle) throws RemoteException {
-		return SalleDAO.update(salle);
+		boolean result = false;
+		Transaction tx = null;
+		boolean isActive = BDDUtils.getTransactionStatus();
+		try {
+			tx = BDDUtils.beginTransaction(isActive);
+			Salle oldSalle = SalleDAO.findById(salle.getId());
+			if(!oldSalle.getNum().equals(salle.getLibelle())){
+				oldSalle.setNum(salle.getNum());
+			}
+			oldSalle.setLibelle(salle.getLibelle());
+			result = SalleDAO.update(oldSalle);
+			BDDUtils.commit(isActive, tx);
+		}
+		catch(Exception ex) {
+			System.out.println("Hibernate failure : "+ ex.getMessage());
+			BDDUtils.rollback(isActive, tx);
+			return false;
+		}
+		return result;
 	}
 
 	@Override
@@ -244,5 +288,38 @@ public class RmiImplementation extends UnicastRemoteObject implements RmiInterfa
 	@Override
 	public Code getCodeByValue(String value) throws RemoteException {
 		return CodeDAO.findByValue(value);
+	}
+
+	@Override
+	public boolean disclameLost(String email, String password) throws RemoteException {
+		boolean isDone = false;
+		Transaction tx = null;
+		boolean isActive = BDDUtils.getTransactionStatus();
+		try {
+			tx = BDDUtils.beginTransaction(isActive);
+			Utilisateur u = UtilisateurDAO.findByEmail(email.toUpperCase());
+			if(u != null && u.getConnexion().getValue().equals(password)){
+				for (Attribuer attribuer : AttribuerDAO.getAttribuersByUtilisateurId(u.getId())) {
+					attribuer.setDate_fin(Calendar.getInstance());
+				}
+				isDone = true;
+			}
+			BDDUtils.commit(isActive, tx);
+		}
+		catch(Exception ex) {
+			System.out.println("Hibernate failure : "+ ex.getMessage());
+			BDDUtils.rollback(isActive, tx);
+		}
+		return isDone;
+	}
+
+	@Override
+	public Salle getSalleByNum(String num) throws RemoteException {
+		return SalleDAO.findByNumSalle(num.toUpperCase());
+	}
+
+	@Override
+	public boolean deleteSalle(Salle salle) throws RemoteException {
+		return SalleDAO.delete(salle);
 	}
 }

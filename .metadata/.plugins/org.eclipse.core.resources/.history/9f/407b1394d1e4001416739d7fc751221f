@@ -1,0 +1,45 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package heavyApp;
+
+import java.util.List;
+
+import javax.swing.JComboBox;
+
+import model.Utilisateur;
+
+
+/**
+ *
+ * @author valga_000
+ */
+public class Link {
+    
+    public Link(){
+    
+    }
+    
+    public void getListUser(JComboBox jC){
+    	List<Utilisateur> lu = SourceIHM.client.getAllUsers();
+        jC.addItem(" -");
+        jC.addItem("Ajouter un Utilisateur");
+        for (Utilisateur utilisateur : lu) {
+        	jC.addItem(utilisateur.getId() + " - " + utilisateur.getFullName());
+		}
+    }
+    
+    public String[] getUserInfo(){
+        String [] sortie = new String [4];
+        System.out.println("GET USER INFO");
+        return sortie;
+    }
+    
+    public void setUser(){
+        System.out.println("INSERT INTO");  
+    }
+    
+}

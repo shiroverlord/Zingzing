@@ -71,7 +71,7 @@ public class Utilisateur implements Serializable {
 		this.prenom = prenom;
 	}
 
-	@Column(name="email")
+	@Column(name="email", unique=true)
 	public String getEmail() {
 		return email;
 	}

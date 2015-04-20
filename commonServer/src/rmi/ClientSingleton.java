@@ -139,6 +139,27 @@ public class ClientSingleton {
 		return result;
 	}
 	
+	public boolean updateUser(Utilisateur u) {
+		boolean result = false;
+		try {
+			result = iRMISingleton.updateUser(u);
+		} 
+		catch(NoSuchObjectException e) {
+			try {
+				connect();
+				result = iRMISingleton.updateUser(u);
+			} catch (Exception e1) {
+				System.out.println("Serveur Data non atteignable : "+e1);
+				isConnected = false;
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Serveur Data non atteignable - iRMISingleton.updateUser(Utilisateur u): "+e);
+			isConnected = false;
+		}
+		return result;
+	}
+	
 	public List<Section> getAllSections() {
 		List<Section> result = null;
 		try {
@@ -260,6 +281,69 @@ public class ClientSingleton {
 		}
 		catch (Exception e) {
 			System.out.println("Serveur Data non atteignable - iRMISingleton.getSalleById(Long id): "+e);
+			isConnected = false;
+		}
+		return result;
+	}
+	
+	public Salle getSalleByNum(String num) {
+		Salle result = null;
+		try {
+			result = iRMISingleton.getSalleByNum(num);
+		} 
+		catch(NoSuchObjectException e) {
+			try {
+				connect();
+				result = iRMISingleton.getSalleByNum(num);
+			} catch (Exception e1) {
+				System.out.println("Serveur Data non atteignable : "+e1);
+				isConnected = false;
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Serveur Data non atteignable - iRMISingleton.getSalleByNum(String num): "+e);
+			isConnected = false;
+		}
+		return result;
+	}
+	
+	public boolean insertSalle(Salle salle) {
+		boolean result = false;
+		try {
+			result = iRMISingleton.insertSalle(salle);
+		} 
+		catch(NoSuchObjectException e) {
+			try {
+				connect();
+				result = iRMISingleton.insertSalle(salle);
+			} catch (Exception e1) {
+				System.out.println("Serveur Data non atteignable : "+e1);
+				isConnected = false;
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Serveur Data non atteignable - iRMISingleton.insertSalle(Salle salle): "+e);
+			isConnected = false;
+		}
+		return result;
+	}
+	
+	public boolean updateSalle(Salle salle) {
+		boolean result = false;
+		try {
+			result = iRMISingleton.updateSalle(salle);
+		} 
+		catch(NoSuchObjectException e) {
+			try {
+				connect();
+				result = iRMISingleton.updateSalle(salle);
+			} catch (Exception e1) {
+				System.out.println("Serveur Data non atteignable : "+e1);
+				isConnected = false;
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Serveur Data non atteignable - iRMISingleton.insertSalle(Salle salle): "+e);
 			isConnected = false;
 		}
 		return result;
@@ -579,6 +663,48 @@ public class ClientSingleton {
 		}
 		catch (Exception e) {
 			System.out.println("Serveur Data non atteignable - iRMISingleton.getConnexionById(Long id): "+e);
+			isConnected = false;
+		}
+		return result;
+	}
+	
+	public boolean updateConnexion(Connexion c) {
+		boolean result = false;
+		try {
+			result = iRMISingleton.updateConnexion(c);
+		} 
+		catch(NoSuchObjectException e) {
+			try {
+				connect();
+				result = iRMISingleton.updateConnexion(c);
+			} catch (Exception e1) {
+				System.out.println("Serveur Data non atteignable : "+e1);
+				isConnected = false;
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Serveur Data non atteignable - iRMISingleton.updateConnexion(Connexion c): "+e);
+			isConnected = false;
+		}
+		return result;
+	}
+	
+	public boolean disclameLost(String email, String password) {
+		boolean result = false;
+		try {
+			result = iRMISingleton.disclameLost(email, password);
+		} 
+		catch(NoSuchObjectException e) {
+			try {
+				connect();
+				result = iRMISingleton.disclameLost(email, password);
+			} catch (Exception e1) {
+				System.out.println("Serveur Data non atteignable : "+e1);
+				isConnected = false;
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Serveur Data non atteignable - iRMISingleton.disclameLost(String email, String password): "+e);
 			isConnected = false;
 		}
 		return result;
